@@ -8,6 +8,6 @@ if [ -d /sys/firmware/efi/efivars ]; then
     mv $CHROOT/usr/sbin/grub-probe $CHROOT/usr/sbin/grub-probe.bak
     echo "exit 0" > $CHROOT/usr/sbin/grub-probe
     chmod +x $CHROOT/usr/sbin/grub-probe
-    chroot $CHROOT apt-get --allow-unauthenticated -y install grub-efi
+    chroot $CHROOT apt-get -y install grub-efi
     mv -f $CHROOT/usr/sbin/grub-probe.bak $CHROOT/usr/sbin/grub-probe
 fi
