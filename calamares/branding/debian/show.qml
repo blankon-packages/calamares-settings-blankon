@@ -41,7 +41,7 @@ Presentation
             anchors.horizontalCenter: background1.horizontalCenter
             anchors.top: background1.bottom
             text: "Welcome to Debian GNU/Linux.<br/>"+
-                  "The rest of the installation is automated and typically takes a few minutes to complete."
+                  "The rest of the installation is automated and should complete in a few minutes."
             wrapMode: Text.WordWrap
             width: 600
             horizontalAlignment: Text.Center

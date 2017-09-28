@@ -1,13 +1,14 @@
 ---
 componentName:   debian
+welcomeStyleCalamares: true
 
 strings:
     productName:         Debian GNU/Linux
     shortProductName:    Debian GNU/Linux
-    version:             9
-    shortVersion:        9
-    versionedName:       Debian GNU/Linux 
-    shortVersionedName:  Debian GNU/Linux 9
+    version:             10
+    shortVersion:        10
+    versionedName:       Debian GNU/Linux
+    shortVersionedName:  Debian GNU/Linux 10
     bootloaderEntryName: Debian GNU/Linux
     productUrl:          https://debian.org
     supportUrl:          https://www.debian.org/support
