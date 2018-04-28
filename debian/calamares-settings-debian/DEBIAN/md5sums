@@ -1,7 +1,0 @@
-56560642d9d9406de52c3b436f4bfae8  usr/sbin/bootloader-eficonfig
-650bbb048010c5442d35312196551e0e  usr/sbin/mount-media-chroot
-7cc9e7f3399c7f6d6d416f6135745a27  usr/sbin/sources-final
-3141e03f31006b0c9e33bbc312eebb8f  usr/sbin/sources-installtime
-ab3179cb9bcb22bc1dd60dfdbabbf3de  usr/sbin/unmount-media-chroot
-657e2d6b596c6ef26cab24910dae205d  usr/share/doc/calamares-settings-debian/changelog.Debian.gz
-204af9b3bb24174e57f1d93cf758ac7c  usr/share/doc/calamares-settings-debian/copyright

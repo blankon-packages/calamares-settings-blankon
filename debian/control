@@ -1,16 +1,21 @@
 Source: calamares-settings-debian
 Section: utils
 Priority: optional
-Maintainer: Jonathan Carter <jcarter@linux.com>
-Build-Depends: debhelper (>= 10)
-Standards-Version: 3.9.8
+Maintainer: Jonathan Carter <jcc@debian.org>
+Build-Depends: debhelper (>= 11)
+Standards-Version: 4.1.4
 Homepage: https://gitlab.com/highvoltage/calamares-settings-debian
 Vcs-Git: https://gitlab.com/highvoltage/calamares-settings-debian-packaging.git
 Vcs-Browser: https://gitlab.com/highvoltage/calamares-settings-debian-packaging/tree/master
 
 Package: calamares-settings-debian
 Architecture: all
-Depends: ${misc:Depends}, calamares
+Depends: calamares,
+         cryptsetup,
+         keyutils,
+         qml-module-qtquick-window2,
+         qml-module-qtquick2,
+         ${misc:Depends}
 Provides: calamares-settings
 Description: Debian theme and settings for the Calamares Installer
  Calamares is a genereic installer framework for Linux distributions.
