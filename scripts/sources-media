@@ -12,7 +12,7 @@ if [ "$1" = "-u" ]; then
 fi
 
 # Remove the base sources, we will configure sources in a later phase
-rm -f /etc/apt/sources.list.d/base.list
+rm -f $CHROOT/etc/apt/sources.list.d/base.list
 
 mkdir -p $CHROOT/$MEDIUM_PATH
 mount --bind $MEDIUM_PATH $CHROOT/$MEDIUM_PATH
