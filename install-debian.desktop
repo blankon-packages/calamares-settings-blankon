@@ -7,4 +7,4 @@ Exec=sudo /usr/bin/calamares
 Comment=Calamares — Installer for Debian Live
 Icon=install-debian
 Terminal=false
-Categories=Qt;
+Categories=Qt;System;
