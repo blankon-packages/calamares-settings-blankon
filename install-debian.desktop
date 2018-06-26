@@ -2,9 +2,10 @@
 Type=Application
 Version=1.0
 Name=Install Debian
-GenericName=System Installer
+GenericName=Calamares Installer
 Exec=sudo /usr/bin/calamares
 Comment=Calamares — Installer for Debian Live
+Keywords=calamares;system;install;debian;installer
 Icon=install-debian
 Terminal=false
 Categories=Qt;System;

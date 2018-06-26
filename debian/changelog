@@ -1,3 +1,10 @@
+calamares-settings-debian (10.0.8-1) unstable; urgency=medium
+
+  * New upstream release
+  * Update watch file
+
+ -- Jonathan Carter <jcc@debian.org>  Mon, 25 Jun 2018 12:29:07 +0200
+
 calamares-settings-debian (10.0.3-1) unstable; urgency=medium
 
   * New upstream release

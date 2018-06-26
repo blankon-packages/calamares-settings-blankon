@@ -1,0 +1,5 @@
+# Only meant to be run by calamares, so its scripts wouldn't have manpages
+calamares-settings-debian: binary-without-manpage
+
+# sudo is from another package but validly so
+calamares-settings-debian: desktop-command-not-in-package
