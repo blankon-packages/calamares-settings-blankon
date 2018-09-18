@@ -1,0 +1,20 @@
+#!/bin/sh
+set -e
+
+case "$1" in
+    install|upgrade)
+        cleanup_and_divert() {
+            # Play it safe because diverts can go wrong 
+            if [ -f $1.orig ]; then
+                mv $1.orig $1
+            fi
+            dpkg-divert --quiet --package calamares-settings-debian \
+		        --divert $1.orig --rename $1
+        }
+
+        # Calamares .desktop file
+        cleanup_and_divert /usr/share/applications/calamares.desktop
+    ;;
+esac
+
+#DEBHELPER#

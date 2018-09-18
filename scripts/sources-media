@@ -1,7 +1,7 @@
 #!/bin/sh
 
 CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
-MEDIUM_PATH="/lib/live/mount/medium"
+MEDIUM_PATH="/run/live/medium"
 RELEASE="buster"
 
 if [ "$1" = "-u" ]; then
@@ -16,12 +16,10 @@ rm -f $CHROOT/etc/apt/sources.list.d/base.list
 
 mkdir -p $CHROOT/$MEDIUM_PATH
 mount --bind $MEDIUM_PATH $CHROOT/$MEDIUM_PATH
-echo "deb [trusted=yes] file:/lib/live/mount/medium $RELEASE main" > $CHROOT/etc/apt/sources.list.d/debian-live-media.list
+echo "deb [trusted=yes] file:$MEDIUM_PATH $RELEASE main" > $CHROOT/etc/apt/sources.list.d/debian-live-media.list
 chroot $CHROOT apt-get update
 # Attempt safest way to remove cruft
-rmdir $CHROOT/lib/live/mount/medium
-rmdir $CHROOT/lib/live/mount
-rmdir $CHROOT/lib/live
-rmdir $CHROOT/lib
+rmdir $CHROOT/run/live/medium
+rmdir $CHROOT/run/live
 
 exit 0

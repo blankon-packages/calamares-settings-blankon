@@ -1,3 +1,11 @@
+calamares-settings-debian (10.0.9-1) unstable; urgency=medium
+
+  * New usptream release
+  * Add divert to hide original Calamares icon
+  * Update standards version to 4.2.1
+
+ -- Jonathan Carter <jcc@debian.org>  Tue, 18 Sep 2018 20:17:54 +0200
+
 calamares-settings-debian (10.0.8-1) unstable; urgency=medium
 
   * New upstream release
