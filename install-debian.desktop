@@ -9,3 +9,4 @@ Keywords=calamares;system;install;debian;installer
 Icon=install-debian
 Terminal=false
 Categories=Qt;System;
+StartupWMClass=calamares
