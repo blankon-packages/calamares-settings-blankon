@@ -1,3 +1,9 @@
+calamares-settings-debian (10.0.10-2) unstable; urgency=medium
+
+  * Fix diverts (Closes: #909492) 
+
+ -- Jonathan Carter <jcc@debian.org>  Tue, 25 Sep 2018 14:32:01 +0200
+
 calamares-settings-debian (10.0.10-1) unstable; urgency=medium
 
   * New upstream release

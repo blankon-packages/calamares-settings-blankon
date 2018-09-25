@@ -3,3 +3,6 @@ calamares-settings-debian: binary-without-manpage
 
 # sudo is from another package but validly so
 calamares-settings-debian: desktop-command-not-in-package
+
+# We don't provide this file on purpose
+calamares-settings-debian: diversion-for-unknown-file
