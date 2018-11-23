@@ -2,4 +2,5 @@ calamares etc
 calamares-modules/* usr/lib/calamares/modules
 scripts/* usr/sbin
 *.desktop usr/share/applications
+install-debian usr/bin
 artwork/install-debian.png usr/share/pixmaps
