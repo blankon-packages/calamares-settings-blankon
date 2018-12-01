@@ -4,3 +4,4 @@ scripts/* usr/sbin
 *.desktop usr/share/applications
 install-debian usr/bin
 artwork/install-debian.png usr/share/pixmaps
+conf/96_calamares-settings-debian.gschema.override usr/share/glib-2.0/schemas

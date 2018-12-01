@@ -1,0 +1,8 @@
+#!/bin/sh
+###
+# Wrapper for running calamares on Debian live media
+###
+
+xhost +si:localuser:root
+sudo calamares
+xhost -si:localuser:root
