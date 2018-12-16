@@ -4,5 +4,5 @@
 ###
 
 xhost +si:localuser:root
-sudo calamares
+pkexec calamares
 xhost -si:localuser:root
