@@ -1,3 +1,10 @@
+calamares-settings-debian (10.0.15-1) unstable; urgency=medium
+
+  * New upstream release
+  * Update standards version to 4.3.0
+
+ -- Jonathan Carter <jcc@debian.org>  Tue, 08 Jan 2019 10:48:47 +0200
+
 calamares-settings-debian (10.0.14-1) unstable; urgency=medium
 
   * New upstream release
