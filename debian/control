@@ -18,7 +18,7 @@ Depends: calamares,
          ${misc:Depends}
 Provides: calamares-settings
 Description: Debian theme and settings for the Calamares Installer
- Calamares is a genereic installer framework for Linux distributions.
+ Calamares is a generic installer framework for Linux distributions.
  By default, it contains a set of boilerplate wording and images. This
  package provides the latest Debian artwork as well as scripts that
  supports EFI installations.
