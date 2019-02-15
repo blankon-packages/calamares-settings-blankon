@@ -1,3 +1,11 @@
+calamares-settings-debian (10.0.18-1) unstable; urgency=medium
+
+  * New upstream releas
+    - fix efi install path to EFI/debian
+  * Update to debhelper-compat (=12)
+
+ -- Jonathan Carter <jcc@debian.org>  Fri, 15 Feb 2019 16:06:39 +0200
+
 calamares-settings-debian (10.0.17-1) unstable; urgency=medium
 
   * New upstream release
