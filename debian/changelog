@@ -1,3 +1,12 @@
+calamares-settings-debian (10.0.19-1) unstable; urgency=medium
+
+  * New upstream release
+    - Don't install unnecessary efi file (Closes: #927102)
+    - Fix distribution description
+    - Fix release notes URL
+
+ -- Jonathan Carter <jcc@debian.org>  Mon, 15 Apr 2019 13:32:36 +0000
+
 calamares-settings-debian (10.0.18-1) unstable; urgency=medium
 
   * New upstream releas

@@ -7,12 +7,12 @@ strings:
     shortProductName:    Debian
     version:             10 (buster)
     shortVersion:        10
-    versionedName:       Debian GNU/Linux 10 (buster)
+    versionedName:       Debian 10 (buster)
     shortVersionedName:  Debian 10
     bootloaderEntryName: Debian
     productUrl:          https://debian.org
     supportUrl:          https://www.debian.org/support
-    releaseNotesUrl:     https://www.debian.org/releases/stretch/releasenotes
+    releaseNotesUrl:     https://www.debian.org/releases/buster/releasenotes
 
 images:
     productLogo:         "debian-logo.png"
