@@ -1,3 +1,10 @@
+calamares-settings-debian (10.0.20-1) unstable; urgency=medium
+
+  * New upstream release
+    - Configure Desktop icon for calamares
+
+ -- Jonathan Carter <jcc@debian.org>  Thu, 18 Apr 2019 08:18:37 +0000
+
 calamares-settings-debian (10.0.19-1) unstable; urgency=medium
 
   * New upstream release
