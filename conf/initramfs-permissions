@@ -1,2 +1,0 @@
-# Set safe defaults for initramfs
-UMASK=0077

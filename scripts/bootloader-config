@@ -2,6 +2,11 @@
 
 CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
 
+# Set secure permissions for the initramfs,
+# the initramfs is re-generated later in the installation process
+# so we only set the permissions without regenerating the initramfs now:
+echo "UMASK=0077" > /etc/initramfs-tools/conf.d/initramfs-permissions
+
 echo "Running bootloader-config..."
 
 if [ -d /sys/firmware/efi/efivars ]; then
