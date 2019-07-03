@@ -1,3 +1,10 @@
+calamares-settings-debian (10.0.23-1) unstable; urgency=medium
+
+  * Fixes permissions for initramfs image (CVE-2019-13179)
+    (Closes: #931373)
+
+ -- Jonathan Carter <jcc@debian.org>  Wed, 03 Jul 2019 13:05:47 +0000
+
 calamares-settings-debian (10.0.20-1) unstable; urgency=medium
 
   * New upstream release
