@@ -1,3 +1,11 @@
+calamares-settings-debian (10.0.25-1) unstable; urgency=medium
+
+  * New upstream release
+    - Refine fix for initramfs permissions, only apply
+      when encryption is enabled
+
+ -- Jonathan Carter <jcc@debian.org>  Fri, 05 Jul 2019 17:37:33 +0200
+
 calamares-settings-debian (10.0.24-1) unstable; urgency=medium
 
   * New upstream release
