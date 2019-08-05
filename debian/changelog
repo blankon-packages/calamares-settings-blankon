@@ -1,3 +1,10 @@
+calamares-settings-debian (10.0.25-2) unstable; urgency=medium
+
+  * Initial source-only upload
+  * Update standards version to 4.4.0
+
+ -- Jonathan Carter <jcc@debian.org>  Mon, 05 Aug 2019 21:30:20 +0200
+
 calamares-settings-debian (10.0.25-1) unstable; urgency=medium
 
   * New upstream release
