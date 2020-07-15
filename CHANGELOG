@@ -1,3 +1,14 @@
+[ 11.1 ]
+
+ * Use xdg-user-dir to specify Desktop path
+   (Debian bug: #959541)
+ * Enable displaymanager module (enables auto-login)
+   (Debian bug: #934503)
+ * Add initial framebuffer session (use 'calamares' in kernel command
+   line to boot straight to calamares)
+
+-- Jonathan Carter 2020-07-15
+
 [ 11.0 ]
 
  * Add initial Debian testing branding
