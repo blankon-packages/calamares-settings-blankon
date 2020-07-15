@@ -1,3 +1,14 @@
+calamares-settings-debian (11.0.2-1) unstable; urgency=medium
+
+  * New upstream release
+    (Closes: #934503, #934504, #959541)
+  * Update standards version to 4.5.0
+  * Upgrade to debhelper-compat 13
+  * Declare Rules-Requires-Root: no
+  * Update copyright years
+
+ -- Jonathan Carter <jcc@debian.org>  Wed, 15 Jul 2020 18:39:57 +0200
+
 calamares-settings-debian (11.0.1-1) unstable; urgency=medium
 
   * New upstream release
