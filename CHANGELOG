@@ -1,3 +1,7 @@
+[ 11.0.3... in progress ]
+
+ * Update settings.conf with changes from recent releases
+
 [ 11.0.2 ]
 
  * Use xdg-user-dir to specify Desktop path
