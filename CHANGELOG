@@ -1,6 +1,11 @@
 [ 11.0.3... in progress ]
 
  * Update settings.conf with changes from recent releases
+ * Update sources.list to include updates security path
+   (Debian bug: #969930)
+ * TODO: next calamares release 3.2.31 will be able to add more files to store
+   entropy, so we can store that and close #941301
+
 
 [ 11.0.2 ]
 
