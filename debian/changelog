@@ -1,3 +1,10 @@
+calamares-settings-debian (11.0.3-1) unstable; urgency=medium
+
+  * New upstream release
+    (Closes: #969930, #941301)
+
+ -- Jonathan Carter <jcc@debian.org>  Sun, 18 Oct 2020 19:48:10 +0200
+
 calamares-settings-debian (11.0.2-1) unstable; urgency=medium
 
   * New upstream release
