@@ -8,7 +8,7 @@ windowPlacement: center
 
 strings:
     productName:         Debian GNU/Linux
-    shortProductName:    Debian testing
+    shortProductName:    Debian
     version:             11 (bullseye)
     shortVersion:        11
     versionedName:       Debian 11 (bullseye)
