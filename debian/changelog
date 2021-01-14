@@ -1,10 +1,4 @@
-calamares-settings-debian (11.0.4-1blankon1) UNRELEASED; urgency=medium
-
-  * 
-
- -- Herpiko Dwi Aguno <herpiko@patribu>  Thu, 14 Jan 2021 17:16:44 +0000
-
-calamares-settings-debian (11.0.4-1ubuntu1) verbeek; urgency=medium
+calamares-settings-debian (11.0.4-1blankon1) verbeek; urgency=medium
 
   * Rebranding attempt
 
