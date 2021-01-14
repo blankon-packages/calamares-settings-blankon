@@ -1,3 +1,9 @@
+calamares-settings-debian (11.0.4-1ubuntu1) verbeek; urgency=medium
+
+  * Rebranding attempt
+
+ -- Herpiko Dwi Aguno <herpiko@gmail.com>  Thu, 14 Jan 2021 17:11:19 +0000
+
 calamares-settings-debian (11.0.4-1) unstable; urgency=medium
 
   * New upstream release
