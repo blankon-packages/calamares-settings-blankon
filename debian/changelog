@@ -1,3 +1,38 @@
+calamares-settings-blankon (11.0.4-1blankon5) verbeek; urgency=medium
+
+  * Increase revision number
+
+ -- Herpiko Dwi Aguno <herpiko@gmail.com>  Fri, 22 Jan 2021 22:17:57 +0700
+
+calamares-settings-blankon (11.0.4-1blankon4) verbeek; urgency=medium
+
+  * Increase revision number
+
+ -- Herpiko Dwi Aguno <herpiko@gmail.com>  Sat, 16 Jan 2021 00:45:14 +0000
+
+calamares-settings-blankon (11.0.4-1blankon3) verbeek; urgency=medium
+
+  * Non-maintainer upload.
+  * 
+
+ -- Herpiko Dwi Aguno <herpiko@gmail.com>  Sun, 03 Jan 2021 13:21:34 +0000
+
+calamares-settings-blankon (11.0.4-1blankon2) verbeek; urgency=medium
+
+  * Fixed version
+  * Rebuild
+
+ -- Anto Samalona <ansamsoftdev@gmail.com>  Mon, 30 Nov 2020 15:09:05 +0800
+
+calamares-settings-blankon (11.0.4-1blankon1) verbeek; urgency=medium
+
+  * Autostart on boot
+  * Minor fix
+  * Add BlankOn branding
+  * New fork from debian
+
+ -- Sofyan Sugianto <sofyanartem@gmail.com>  Mon, 30 Nov 2020 06:51:21 +0700
+
 calamares-settings-debian (11.0.4-1) unstable; urgency=medium
 
   * New upstream release
