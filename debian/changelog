@@ -1,3 +1,9 @@
+calamares-settings-blankon (11.0.4-1blankon6) verbeek; urgency=medium
+
+  * Fix typo.
+
+ -- Herpiko Dwi Aguno <herpiko@gmail.com>  Tue, 02 Feb 2021 20:29:35 +0700
+
 calamares-settings-blankon (11.0.4-1blankon5) verbeek; urgency=medium
 
   * Increase revision number

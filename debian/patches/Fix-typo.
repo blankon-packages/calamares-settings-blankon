@@ -1,0 +1,26 @@
+Description: Fix typo
+ .
+ calamares-settings-blankon (11.0.4-1blankon5) verbeek; urgency=medium
+ .
+   * Increase revision number
+Author: Herpiko Dwi Aguno <herpiko@gmail.com>
+
+---
+The information above should follow the Patch Tagging Guidelines, please
+checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
+are templates for supplementary fields that you might want to add:
+
+Origin: other, git@github.com:BlankOn/calamares-settings-blankon.git
+Bug: https://github.com/BlankOn/Verbeek/issues/168
+Last-Update: 2021-02-02
+
+--- calamares-settings-blankon-11.0.4.orig/install-blankon
++++ calamares-settings-blankon-11.0.4/install-blankon
+@@ -1,6 +1,6 @@
+ #!/bin/sh
+ ###
+-# Wrapper for running calamares on Debian live media
++# Wrapper for running calamares on BlankOn live media
+ ###
+ 
+ # Stale file left behind by live-build that messes with partitioning
