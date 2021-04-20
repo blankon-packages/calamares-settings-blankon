@@ -24,7 +24,7 @@ Presentation
     id: presentation
 
     Timer {
-        interval: 20000
+        interval: 15000
         repeat: true
         onTriggered: presentation.goToNextSlide()
     }
@@ -40,8 +40,26 @@ Presentation
         Text {
             anchors.horizontalCenter: background1.horizontalCenter
             anchors.top: background1.bottom
-            text: "Welcome to BlankOn GNU/Linux.<br/>"+
-                  "The rest of the installation is automated and should complete in a few minutes."
+            text: "Selamat datang di BlankOn GNU/Linux.<br/>"+
+                  "Selanjutnya, pemasangan akan dijalankan secara otomatis dan akan selesai dalam beberapa menit lagi."
+            wrapMode: Text.WordWrap
+            width: 600
+            horizontalAlignment: Text.Center
+        }
+    }
+
+    Slide {
+        Image {
+            id: background2
+            source: "slide1.png"
+            width: 467; height: 280
+            fillMode: Image.PreserveAspectFit
+            anchors.centerIn: parent
+        }
+        Text {
+            anchors.horizontalCenter: background2.horizontalCenter
+            anchors.top: background2.bottom
+            text: "Siap untuk memulai kemandirian berperangkat lunak?"
             wrapMode: Text.WordWrap
             width: 600
             horizontalAlignment: Text.Center
