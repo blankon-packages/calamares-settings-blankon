@@ -1,3 +1,11 @@
+calamares-settings-blankon (11.0.4-1blankon6) verbeek; urgency=medium
+
+  * Add logging file
+  * Sample slideshows
+  * Disable signed grub package
+
+ -- Anto Samalona <ansamsoftdev@gmail.com>  Tue, 20 Apr 2021 19:02:28 +0800
+
 calamares-settings-blankon (11.0.4-1blankon5) verbeek; urgency=medium
 
   * Increase revision number
