@@ -1,3 +1,9 @@
+calamares-settings-blankon (11.0.4-1blankon7) verbeek; urgency=medium
+
+  * Install only grub-efi-amd64 and efibootmgr without signed package 
+
+ -- Herpiko Dwi Aguno <herpiko@gmail.com>  Sun, 27 Jun 2021 13:52:20 +0000
+
 calamares-settings-blankon (11.0.4-1blankon6) verbeek; urgency=medium
 
   * Add logging file
