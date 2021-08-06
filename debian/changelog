@@ -1,3 +1,9 @@
+calamares-settings-blankon (11.0.5-1blankon1) UNRELEASED; urgency=medium
+
+  * Update to 11.0.5
+
+ -- Herpiko Dwi Aguno <herpiko@patribu>  Fri, 06 Aug 2021 18:35:23 +0000
+
 calamares-settings-blankon (11.0.4-1blankon5) verbeek; urgency=medium
 
   * Increase revision number
