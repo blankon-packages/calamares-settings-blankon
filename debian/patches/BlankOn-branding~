@@ -24,10 +24,8 @@ Forwarded: <no|not-needed|url proving that it has been forwarded>
 Reviewed-By: <name and email of someone who approved the patch>
 Last-Update: 2021-01-16
 
-Index: calamares-settings-blankon/add-calamares-desktop-icon
-===================================================================
---- calamares-settings-blankon.orig/add-calamares-desktop-icon
-+++ calamares-settings-blankon/add-calamares-desktop-icon
+--- calamares-settings-blankon-11.0.4.orig/add-calamares-desktop-icon
++++ calamares-settings-blankon-11.0.4/add-calamares-desktop-icon
 @@ -1,5 +1,5 @@
  #!/bin/sh
 -# Creates an "Install Debian" icon on the live session tested with:
@@ -63,10 +61,8 @@ Index: calamares-settings-blankon/add-calamares-desktop-icon
 -    chmod +x $DESKTOP/install-debian.desktop
 +    chmod +x $DESKTOP/install-blankon.desktop
  fi
-Index: calamares-settings-blankon/calamares/branding/blankon/branding.desc
-===================================================================
 --- /dev/null
-+++ calamares-settings-blankon/calamares/branding/blankon/branding.desc
++++ calamares-settings-blankon-11.0.4/calamares/branding/blankon/branding.desc
 @@ -0,0 +1,37 @@
 +---
 +componentName:   blankon
@@ -105,10 +101,8 @@ Index: calamares-settings-blankon/calamares/branding/blankon/branding.desc
 +   sidebarTextSelect:    "#292F34"
 +
 +slideshowAPI: 2
-Index: calamares-settings-blankon/calamares/branding/blankon/show.qml
-===================================================================
 --- /dev/null
-+++ calamares-settings-blankon/calamares/branding/blankon/show.qml
++++ calamares-settings-blankon-11.0.4/calamares/branding/blankon/show.qml
 @@ -0,0 +1,51 @@
 +/* === This file is part of Calamares - <http://github.com/calamares> ===
 + *
@@ -161,10 +155,8 @@ Index: calamares-settings-blankon/calamares/branding/blankon/show.qml
 +    }
 +
 +}
-Index: calamares-settings-blankon/calamares/modules/bootloader.conf
-===================================================================
---- calamares-settings-blankon.orig/calamares/modules/bootloader.conf
-+++ calamares-settings-blankon/calamares/modules/bootloader.conf
+--- calamares-settings-blankon-11.0.4.orig/calamares/modules/bootloader.conf
++++ calamares-settings-blankon-11.0.4/calamares/modules/bootloader.conf
 @@ -43,7 +43,7 @@ efiBootMgr: "efibootmgr"
  # setting the option here, keep in mind that the name is sanitized
  # (problematic characters, see above, are replaced).
@@ -174,10 +166,8 @@ Index: calamares-settings-blankon/calamares/modules/bootloader.conf
  
  # Optionally install a copy of the GRUB EFI bootloader as the EFI
  # fallback loader (either bootia32.efi or bootx64.efi depending on
-Index: calamares-settings-blankon/calamares/modules/packages.conf
-===================================================================
---- calamares-settings-blankon.orig/calamares/modules/packages.conf
-+++ calamares-settings-blankon/calamares/modules/packages.conf
+--- calamares-settings-blankon-11.0.4.orig/calamares/modules/packages.conf
++++ calamares-settings-blankon-11.0.4/calamares/modules/packages.conf
 @@ -11,4 +11,5 @@ operations:
        - 'live-tools'
        - 'live-task-localisation'
@@ -185,10 +175,8 @@ Index: calamares-settings-blankon/calamares/modules/packages.conf
 -      - 'calamares-settings-debian'
 +      - 'calamares-settings-blankon'
 +      - 'debian-installer-launcher'
-Index: calamares-settings-blankon/calamares/settings.conf
-===================================================================
---- calamares-settings-blankon.orig/calamares/settings.conf
-+++ calamares-settings-blankon/calamares/settings.conf
+--- calamares-settings-blankon-11.0.4.orig/calamares/settings.conf
++++ calamares-settings-blankon-11.0.4/calamares/settings.conf
 @@ -100,7 +100,7 @@ sequence:
  # Only the name of the branding component (directory) should be
  # specified here, Calamares then takes care of finding it and
@@ -198,10 +186,8 @@ Index: calamares-settings-blankon/calamares/settings.conf
  
  # If this is set to true, Calamares will show an "Are you sure?" prompt right
  # before each execution phase, i.e. at points of no return. If this is set to
-Index: calamares-settings-blankon/conf/96_calamares-settings-blankon.gschema.override
-===================================================================
 --- /dev/null
-+++ calamares-settings-blankon/conf/96_calamares-settings-blankon.gschema.override
++++ calamares-settings-blankon-11.0.4/conf/96_calamares-settings-blankon.gschema.override
 @@ -0,0 +1,10 @@
 +# Launcher icons
 +[org.gnome.shell]
@@ -213,10 +199,8 @@ Index: calamares-settings-blankon/conf/96_calamares-settings-blankon.gschema.ove
 +
 +[org.gnome.desktop.session]
 +idle-delay=0
-Index: calamares-settings-blankon/install-blankon
-===================================================================
 --- /dev/null
-+++ calamares-settings-blankon/install-blankon
++++ calamares-settings-blankon-11.0.4/install-blankon
 @@ -0,0 +1,15 @@
 +#!/bin/sh
 +###
@@ -233,10 +217,8 @@ Index: calamares-settings-blankon/install-blankon
 +
 +# Restore stale fstab, for what it's worth
 +sudo mv /etc/fstab.orig.calamares /etc/fstab
-Index: calamares-settings-blankon/install-blankon.desktop
-===================================================================
 --- /dev/null
-+++ calamares-settings-blankon/install-blankon.desktop
++++ calamares-settings-blankon-11.0.4/install-blankon.desktop
 @@ -0,0 +1,13 @@
 +[Desktop Entry]
 +Type=Application
@@ -251,10 +233,8 @@ Index: calamares-settings-blankon/install-blankon.desktop
 +Categories=Qt;System;
 +StartupWMClass=calamares
 +StartupNotify=True
-Index: calamares-settings-blankon/scripts/sources-final
-===================================================================
---- calamares-settings-blankon.orig/scripts/sources-final
-+++ calamares-settings-blankon/scripts/sources-final
+--- calamares-settings-blankon-11.0.4.orig/scripts/sources-final
++++ calamares-settings-blankon-11.0.4/scripts/sources-final
 @@ -4,18 +4,8 @@
  #
  
@@ -276,10 +256,8 @@ Index: calamares-settings-blankon/scripts/sources-final
 +cp /etc/apt/sources.list $CHROOT/etc/apt/sources.list
  
  exit 0
-Index: calamares-settings-blankon/scripts/sources-media
-===================================================================
---- calamares-settings-blankon.orig/scripts/sources-media
-+++ calamares-settings-blankon/scripts/sources-media
+--- calamares-settings-blankon-11.0.4.orig/scripts/sources-media
++++ calamares-settings-blankon-11.0.4/scripts/sources-media
 @@ -2,11 +2,11 @@
  
  CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
