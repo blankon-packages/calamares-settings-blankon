@@ -1,0 +1,12 @@
+Index: calamares-settings-blankon/scripts/bootloader-config
+===================================================================
+--- calamares-settings-blankon.orig/scripts/bootloader-config
++++ calamares-settings-blankon/scripts/bootloader-config
+@@ -1,5 +1,7 @@
+ #!/bin/bash
+ 
++# Ini adalah tambalan satu
++
+ CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
+ 
+ # Set secure permissions for the initramfs if we're configuring
