@@ -1,3 +1,16 @@
+calamares-settings-debian (11.0.5-2) unstable; urgency=medium
+
+  * Add supplimental information to previous changelog entry
+
+ -- Jonathan Carter <jcc@debian.org>  Mon, 26 Jul 2021 10:27:12 +0200
+
+calamares-settings-debian (11.0.5-1) unstable; urgency=medium
+
+  * New upstream release
+    - Corrects the apt sources for security updates (Closes: #991474)
+
+ -- Jonathan Carter <jcc@debian.org>  Sun, 25 Jul 2021 14:10:24 +0200
+
 calamares-settings-debian (11.0.4-1) unstable; urgency=medium
 
   * New upstream release
