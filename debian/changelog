@@ -1,3 +1,10 @@
+calamares-settings-debian (11.0.5-3) UNRELEASED; urgency=medium
+
+  * Set upstream metadata fields: Repository, Repository-Browse.
+  * Update standards version to 4.6.0, no changes needed.
+
+ -- Debian Janitor <janitor@jelmer.uk>  Tue, 12 Oct 2021 20:09:15 -0000
+
 calamares-settings-debian (11.0.5-2) unstable; urgency=medium
 
   * Add supplimental information to previous changelog entry
