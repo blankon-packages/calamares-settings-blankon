@@ -1,3 +1,9 @@
+calamares-settings-debian (12.0.2-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Jonathan Carter <jcc@debian.org>  Thu, 19 May 2022 14:51:29 +0200
+
 calamares-settings-debian (12.0.1-1) unstable; urgency=medium
 
   [ Debian Janitor ]

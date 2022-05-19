@@ -1,3 +1,8 @@
+[ 12.0.2 ]
+
+ * Fix dpkg-unsafe-io and dpkg-unsafe-io-undo names
+ * Update the sources-media script to use bookworm
+
 [ 12.0.1 ]
 
  * Initial branding description and sources.list changes for bookworm
