@@ -1,3 +1,10 @@
+calamares-settings-debian (12.0.5-1) unstable; urgency=medium
+
+  * New upstream release
+    - Update sources.list to include backports and non-free-firmware
+
+ -- Jonathan Carter <jcc@debian.org>  Mon, 06 Mar 2023 19:24:55 +0200
+
 calamares-settings-debian (12.0.4-1) unstable; urgency=medium
 
   * New upstream release

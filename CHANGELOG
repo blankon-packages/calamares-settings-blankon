@@ -1,3 +1,7 @@
+[ 12.0.5 ]
+
+ * Update sources.list to include non-free-firmware and backports
+
 [ 12.0.4 ]
 
  * Update artwork for Debian 12 (emerald theme)
