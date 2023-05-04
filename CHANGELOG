@@ -1,3 +1,15 @@
+[ 10.0.8 ]
+
+ * Do grub work within the chroot
+
+[ 10.0.7 ]
+
+ * Enable os-prober /after/ grub has been installed.
+
+[ 12.0.6 ]
+
+ * Enable os-prober
+
 [ 12.0.5 ]
 
  * Update sources.list to include non-free-firmware and backports
