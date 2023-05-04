@@ -1,8 +1,15 @@
-[ 10.0.8 ]
+[ 12.0.9 ]
+
+ * Fix typos in version numbers for last two changelog entries
+ * Install cryptsetup-initramfs, cryptsetup and keyutils (only) when needed
+   (required due to these packages only now existing on package pool,
+    not on the squashfs filesystem)
+
+[ 12.0.8 ]
 
  * Do grub work within the chroot
 
-[ 10.0.7 ]
+[ 12.0.7 ]
 
  * Enable os-prober /after/ grub has been installed.
 

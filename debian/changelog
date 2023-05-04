@@ -1,3 +1,10 @@
+calamares-settings-debian (12.0.9-1) unstable; urgency=medium
+
+  * New upstream release
+    - Deal with changes in how luks tools are installed from live media
+
+ -- Jonathan Carter <jcc@debian.org>  Thu, 04 May 2023 20:47:17 +0200
+
 calamares-settings-debian (12.0.8-1) unstable; urgency=medium
 
   * New upstream release
