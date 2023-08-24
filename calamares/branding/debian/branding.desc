@@ -3,7 +3,7 @@ componentName:   debian
 welcomeStyleCalamares: true
 welcomeExpandingLogo: true
 windowExpanding: normal
-windowSize: 800px,520px
+windowSize: 800px,580px
 windowPlacement: center
 
 strings:
@@ -20,18 +20,22 @@ strings:
     releaseNotesUrl:     https://www.debian.org/releases/bookworm/releasenotes
     donateUrl:           https://www.debian.org
 
+sidebar: widget
+navigation: widget
+
 images:
+#    productBanner:       "/usr/share/desktop-base/emerald-theme/grub/grub-16x9.png"
     productLogo:         "debian-logo.png"
     productIcon:         "debian-logo.png"
     productWelcome:      "welcome.png"
-    # productWallpaper:  "wallpaper.png"
+#    productWallpaper:    ""
 
 slideshow:               "show.qml"
 
 style:
-   sidebarBackground:    "#2c3133"
-   sidebarText:          "#FFFFFF"
-   sidebarTextSelect:    "#4d7079"
-   sidebarTextSelect:    "#292F34"
+   SidebarBackground:    "#010027"
+   SidebarText:          "#FFFFFF"
+   SidebarTextCurrent:   "#fbfbfb"
+   SidebarBackgroundCurrent: "#017877"
 
 slideshowAPI: 2
