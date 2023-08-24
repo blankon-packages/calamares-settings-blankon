@@ -1,3 +1,10 @@
+calamares-settings-debian (13.0.2-1) unstable; urgency=medium
+
+  * New upstream release
+    - Fix desktop script path
+
+ -- Jonathan Carter <jcc@debian.org>  Thu, 24 Aug 2023 17:32:33 +0200
+
 calamares-settings-debian (13.0.1-1) unstable; urgency=medium
 
   * New upstream release
