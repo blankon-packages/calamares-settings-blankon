@@ -1,3 +1,10 @@
+calamares-settings-debian (13.0.3-1) unstable; urgency=medium
+
+  * New upstream release
+    - Do not allow empty password (Closes: #1050291)
+
+ -- Jonathan Carter <jcc@debian.org>  Fri, 25 Aug 2023 21:51:02 +0200
+
 calamares-settings-debian (13.0.2-1) unstable; urgency=medium
 
   * New upstream release
