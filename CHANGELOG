@@ -1,6 +1,11 @@
 [ 13.0.3 ]
 
+(unreleaSed)
+
  * Update branding elements for Calamares 3.3 series
+ * Fix desktop file launcher
+ * Set installEFIFallback: true
+ * Don't allow empty passwords
 
 [ 13.0.2 ]
 
