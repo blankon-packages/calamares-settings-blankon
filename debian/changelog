@@ -1,3 +1,10 @@
+calamares-settings-debian (13.0.4-1) unstable; urgency=medium
+
+  * New upstream release
+    - Fix crash where /dev isn't mounted
+
+ -- Jonathan Carter <jcc@debian.org>  Mon, 28 Aug 2023 19:17:29 +0200
+
 calamares-settings-debian (13.0.3-1) unstable; urgency=medium
 
   * New upstream release

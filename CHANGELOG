@@ -1,6 +1,9 @@
-[ 13.0.3 ]
+[ 13.0.4 ]
 
-(unreleaSed)
+ * Update config in mount module so that /dev is properly mounted
+   in target
+
+[ 13.0.3 ]
 
  * Update branding elements for Calamares 3.3 series
  * Fix desktop file launcher
