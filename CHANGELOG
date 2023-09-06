@@ -1,3 +1,8 @@
+[ 13.0.5 unreleased ]
+
+ * Use $DESKTOP variable in desktop launcher creater
+   (doesn't break translations)
+
 [ 13.0.4 ]
 
  * Update config in mount module so that /dev is properly mounted
