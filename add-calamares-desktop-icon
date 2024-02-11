@@ -31,5 +31,5 @@ fi
         metadata::trusted true
     gio set --type=string ~/Desktop/calamares-install-debian.desktop \
         metadata::xfce-exe-checksum \
-        "$(sha256sum ~/Desktop/calamares-install-debian.desktop | cut -f1)"
+        "$(sha256sum ~/Desktop/calamares-install-debian.desktop | cut -f1 -d' ')"
     touch ~/Desktop/calamares-install-debian.desktop

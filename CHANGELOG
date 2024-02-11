@@ -1,3 +1,8 @@
+[ 13.0.5 ]
+
+ * Add pesky missing delimiter for Calamares desktop icon setup
+   (thanks Roland Clobus, #1037299)
+
 [ 13.0.4 ]
 
  * Update config in mount module so that /dev is properly mounted
