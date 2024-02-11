@@ -1,7 +1,7 @@
-[ 13.0.5 unreleased ]
+[ 13.0.5 ]
 
- * Use $DESKTOP variable in desktop launcher creater
-   (doesn't break translations)
+ * Add pesky missing delimiter for Calamares desktop icon setup
+   (thanks Roland Clobus, #1037299)
 
 [ 13.0.4 ]
 
