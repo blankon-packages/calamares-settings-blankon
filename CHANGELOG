@@ -1,3 +1,13 @@
+[ 13.0.6 ]
+
+ * Merge MR!3
+   - Add missing mountpoints
+ * Merge MR!2
+   - Install more generic grub-efi package to allow installation on
+     non-amd64 architectures
+ * Remove space_cache from fstab module (space_cache=v2 is now default)
+   and also autodefrag which isn't useful on modern storage
+
 [ 13.0.5 ]
 
  * Add pesky missing delimiter for Calamares desktop icon setup

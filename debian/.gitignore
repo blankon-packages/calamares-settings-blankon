@@ -1,5 +1,0 @@
-.debhelper/
-calamares-settings-debian.substvars
-calamares-settings-debian/
-debhelper-build-stamp
-files
