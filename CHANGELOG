@@ -1,7 +1,11 @@
+[ 13.0.8 ]
+
+ * Move lukskeyconfig further up the task chain
+
 [ 13.0.7 ]
 
- * Change order of modules being run to attempt fixing current
-   problems with encrypted setups
+ * Move lukskeyconfig action before fstab
+   (fstab now depends on it being configured)
 
 [ 13.0.6 ]
 

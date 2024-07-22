@@ -1,3 +1,17 @@
+calamares-settings-debian (13.0.8-1) unstable; urgency=medium
+
+  * New upstream release
+    - Further attempt to fix encrypted installs
+
+ -- Jonathan Carter <jcc@debian.org>  Mon, 22 Jul 2024 15:39:42 +0900
+
+calamares-settings-debian (13.0.7-1) unstable; urgency=medium
+
+  * New upstream release
+    - Fix encrypted installs
+
+ -- Jonathan Carter <jcc@debian.org>  Mon, 22 Jul 2024 14:13:23 +0900
+
 calamares-settings-debian (13.0.6-1) unstable; urgency=medium
 
   * New upstream release
