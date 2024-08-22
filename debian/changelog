@@ -1,3 +1,9 @@
+calamares-settings-debian (13.0.9-1) unstable; urgency=medium
+
+  * New upstream release (Closes: #1037123, #1001192)
+
+ -- Jonathan Carter <jcc@debian.org>  Thu, 22 Aug 2024 18:54:20 +0200
+
 calamares-settings-debian (13.0.8-1) unstable; urgency=medium
 
   * New upstream release

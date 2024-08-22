@@ -1,3 +1,14 @@
+[ 13.0.9 ]
+
+ * Bump minimum storage required to 15G
+   https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=#1037123
+ * Update copyright years 
+ * Fix dconf entry for calamares launcher (fixes launcher on GNOME)
+ * Use trim by default for encrypted media
+   https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1001192
+ * Use idle cycles to preload calamares binary and libraries
+   for faster startup
+
 [ 13.0.8 ]
 
  * Move lukskeyconfig further up the task chain
