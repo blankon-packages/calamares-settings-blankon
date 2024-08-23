@@ -3,7 +3,7 @@ Upstream-Name: calamares-settings-debian
 Source: https://gitlab.com/highvoltage/calamares-settings-debian
 
 Files: *
-Copyright: 2016-2023, Jonathan Carter <jcc@debian.org>
+Copyright: 2016-2024, Jonathan Carter <jcc@debian.org>
 License: ISC
 
 Files: calamares/branding/debian/*png

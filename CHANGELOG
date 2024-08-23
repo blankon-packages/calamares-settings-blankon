@@ -1,3 +1,13 @@
+[ 13.0.11 ]
+
+ * Fix typo in filename
+ * Move scripts to helpers
+
+[ 13.0.10 ]
+
+ * Make script names less generic and namespace under /usr/share/calamare
+   https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1021156
+
 [ 13.0.9 ]
 
  * Bump minimum storage required to 15G
