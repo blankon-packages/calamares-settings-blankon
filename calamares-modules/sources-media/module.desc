@@ -2,5 +2,5 @@
 type:       "job"
 name:       "sources-media"
 interface:  "process"
-command:    "/usr/share/calamares/calamares-sources-media"
+command:    "/usr/share/calamares/helpers/calamares-sources-media"
 timeout:    600
