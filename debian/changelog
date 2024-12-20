@@ -1,3 +1,12 @@
+calamares-settings-debian (13.0.12-1) unstable; urgency=medium
+
+  * New upstream release
+    - Includes initial Caretopsia artwork for Trixie
+    - Support more than one value for the media path
+      (Closes: #1089618)
+
+ -- Jonathan Carter <jcc@debian.org>  Fri, 20 Dec 2024 15:01:36 +0200
+
 calamares-settings-debian (13.0.11-1) unstable; urgency=medium
 
   * New upstream release
