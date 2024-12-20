@@ -1,3 +1,8 @@
+[ 13.0.12 ]
+
+ * Initial Ceratopsian artwork changes
+ * Support for alternate media paths (Debian bug: #1089618)
+
 [ 13.0.11 ]
 
  * Fix typo in filename
@@ -5,7 +10,7 @@
 
 [ 13.0.10 ]
 
- * Make script names less generic and namespace under /usr/share/calamare
+ * Make script names less generic and namespace under /usr/share/calamares
    https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1021156
 
 [ 13.0.9 ]
