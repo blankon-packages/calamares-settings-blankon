@@ -1,3 +1,9 @@
+calamares-settings-debian (13.0.12-2) unstable; urgency=medium
+
+  * Add rsync as a dependency (Closes: #1080188) 
+
+ -- Jonathan Carter <jcc@debian.org>  Mon, 06 Jan 2025 12:03:48 +0200
+
 calamares-settings-debian (13.0.12-1) unstable; urgency=medium
 
   * New upstream release

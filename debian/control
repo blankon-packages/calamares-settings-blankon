@@ -12,6 +12,7 @@ Vcs-Browser: https://salsa.debian.org/live-team/calamares-settings-debian-packag
 Package: calamares-settings-debian
 Architecture: all
 Depends: calamares,
+         rsync,
          cryptsetup,
          libglib2.0-bin,
          keyutils,
