@@ -17,7 +17,7 @@ strings:
     productUrl:          https://debian.org
     supportUrl:          https://www.debian.org/support
     knownIssuesUrl:      https://bugs.debian.org
-    releaseNotesUrl:     https://www.debian.org/releases/bookworm/releasenotes
+    releaseNotesUrl:     https://www.debian.org/releases/trixie/releasenotes
     donateUrl:           https://www.debian.org
 
 sidebar: widget

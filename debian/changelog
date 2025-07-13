@@ -1,3 +1,10 @@
+calamares-settings-debian (13.0.13-1) unstable; urgency=medium
+
+  * New upstream relese
+    - Fix support url (Closes: #1109232)
+
+ -- Jonathan Carter <jcc@debian.org>  Sun, 13 Jul 2025 23:52:19 +0200
+
 calamares-settings-debian (13.0.12-2) unstable; urgency=medium
 
   * Add rsync as a dependency (Closes: #1080188) 
