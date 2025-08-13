@@ -1,3 +1,11 @@
+[ 14.0.1 ]
+
+ * Reintroduce egg theme
+ * Update branding module to list Debian 14
+ * Set only password requirement to be at least 6 characters
+   (See Debian bugs: #1082020, #1109136)
+ * Disable lvm support (See Debian bugs: #1109138, #1060232)
+ 
 [ 13.0.12 ]
 
  * Initial Ceratopsian artwork changes
