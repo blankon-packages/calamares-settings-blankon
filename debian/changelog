@@ -1,3 +1,14 @@
+calamares-settings-debian (14.0.1-1) unstable; urgency=medium
+
+  * New upstream release
+    - Reintroduce egg theme
+    - Update branding for Debian 14
+    - Set only password requirement to be at least 6 characters
+      (Closes: #1082020, #1109136)
+    - Disable lvm support (Closes: #1109138, #1060232)
+
+ -- Jonathan Carter <jcc@debian.org>  Wed, 13 Aug 2025 21:32:37 +0200
+
 calamares-settings-debian (13.0.13-1) unstable; urgency=medium
 
   * New upstream relese

@@ -9,15 +9,15 @@ windowPlacement: center
 strings:
     productName:         Debian GNU/Linux
     shortProductName:    Debian
-    version:             13
-    shortVersion:        13
-    versionedName:       Debian 13
-    shortVersionedName:  Debian 13
+    version:             14
+    shortVersion:        14
+    versionedName:       Debian 14
+    shortVersionedName:  Debian 14
     bootloaderEntryName: Debian
     productUrl:          https://debian.org
     supportUrl:          https://www.debian.org/support
     knownIssuesUrl:      https://bugs.debian.org
-    releaseNotesUrl:     https://www.debian.org/releases/trixie/releasenotes
+    releaseNotesUrl:     https://www.debian.org/releases/forky/releasenotes
     donateUrl:           https://www.debian.org
 
 sidebar: widget
