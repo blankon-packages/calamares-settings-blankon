@@ -1,3 +1,9 @@
+calamares-settings-debian (14.0.1-2) unstable; urgency=medium
+
+  * No change upload 
+
+ -- Jonathan Carter <jcc@debian.org>  Wed, 13 Aug 2025 22:18:02 +0200
+
 calamares-settings-debian (14.0.1-1) unstable; urgency=medium
 
   * New upstream release
