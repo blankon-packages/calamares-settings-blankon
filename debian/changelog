@@ -1,3 +1,12 @@
+calamares-settings-debian (14.0.2-1) unstable; urgency=medium
+
+  * New release
+    - Update favorite-apps (Closes: #1109139)
+    - Increase bootloader timeout value (Closes: #1120779)
+    - Change default btrfs compression from lzo to zstd:3
+
+ -- Jonathan Carter <jcc@debian.org>  Tue, 02 Dec 2025 15:52:52 +0200
+
 calamares-settings-debian (14.0.1-2) unstable; urgency=medium
 
   * No change upload 
