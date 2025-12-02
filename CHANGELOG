@@ -1,3 +1,13 @@
+[ 14.0.2 ]
+
+ * Change btrfs compression to zstd:3
+   https://salsa.debian.org/live-team/calamares-settings-debian-packaging/-/merge_requests/4
+ * Update favorite-apps
+   https://salsa.debian.org/live-team/calamares-settings-debian-packaging/-/merge_requests/7
+   (Debian bug: #1109139)
+ * Increase timeouts for bootloade-config from 600 to 1800 (other tasks are too trivial to increase)
+   (Debian bug: #1120779)
+
 [ 14.0.1 ]
 
  * Reintroduce egg theme
