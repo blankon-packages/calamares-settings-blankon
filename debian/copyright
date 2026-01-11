@@ -12,6 +12,7 @@ License: CC-BY-SA-3.0
 
 Files: debian/*
 Copyright: 2016-2023 Jonathan Carter <jcc@debian.org>
+           2026 luckynee <luckymahendra080503@gmail.com>
 License: ISC
 
 Files: calamares/branding/debian/show.qml
