@@ -1,7 +1,7 @@
 Source: calamares-settings-debian
 Section: utils
 Priority: optional
-Maintainer: Jonathan Carter <jcc@debian.org>
+Maintainer: luckynee <luckymahendra080503@gmail.com>
 Build-Depends: debhelper-compat (= 13), libglib2.0-bin
 Standards-Version: 4.6.2
 Rules-Requires-Root: no
