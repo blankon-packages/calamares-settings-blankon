@@ -1,0 +1,39 @@
+---
+componentName:   blankon
+welcomeStyleCalamares: true
+welcomeExpandingLogo: true
+windowExpanding: normal
+windowSize: 800px,580px
+windowPlacement: center
+
+strings:
+    productName:         BlankOn GNU/Linux
+    shortProductName:    BlankOn
+    version:             15.0
+    shortVersion:        15.0
+    versionedName:       BlankOn 15.0
+    shortVersionedName:  BlankOn 15.0
+    bootloaderEntryName: BlankOn
+    productUrl:          https://blankonlinux.or.id
+    supportUrl:          https://blankonlinux.or.id/support
+    knownIssuesUrl:      https://github.com/BlankOn/blankon-live-build/issues
+    releaseNotesUrl:     https://blankonlinux.or.id/releases
+    donateUrl:           https://blankonlinux.or.id
+
+sidebar: widget
+navigation: widget
+
+images:
+    productLogo:         "blankon-logo.png"
+    productIcon:         "blankon-logo.png"
+    productWelcome:      "welcome.png"
+
+slideshow:               "show.qml"
+
+style:
+   SidebarBackground:    "#4a90e2"
+   SidebarText:          "#FFFFFF"
+   SidebarTextCurrent:   "#fbfbfb"
+   SidebarBackgroundCurrent: "#5ca5e2"
+
+slideshowAPI: 2
