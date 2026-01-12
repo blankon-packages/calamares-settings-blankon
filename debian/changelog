@@ -1,3 +1,19 @@
+calamares-settings-blankon (15.0.1-1) verbeek; urgency=medium
+
+  * Release 15.0.1
+    - New upstream BlankOn version
+    - Updated branding for 15.0.1
+
+ -- luckynee <luckymahendra080503@gmail.com>  Mon, 12 Jan 2026 23:00:00 +0700
+
+calamares-settings-blankon (15.0.0-2) verbeek; urgency=medium
+
+  * Rebuild after reprepro cleanup
+    - Updated debian/install to use calamares-install-debian
+    - Fixed file path issues
+
+ -- luckynee <luckymahendra080503@gmail.com>  Mon, 12 Jan 2026 22:45:00 +0700
+
 calamares-settings-blankon (15.0.0-1) verbeek; urgency=medium
 
   * Initial release for BlankOn
