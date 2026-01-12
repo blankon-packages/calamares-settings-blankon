@@ -1,4 +1,4 @@
-calamares-settings-blankon (15.0.0-1) unstable; urgency=medium
+calamares-settings-blankon (15.0.0-1) verbeek; urgency=medium
 
   * Initial release for BlankOn
     - Based on Debian calamares-settings-debian
