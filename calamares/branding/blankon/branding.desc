@@ -9,10 +9,10 @@ windowPlacement: center
 strings:
     productName:         BlankOn GNU/Linux
     shortProductName:    BlankOn
-    version:             15.0
-    shortVersion:        15.0
-    versionedName:       BlankOn 15.0
-    shortVersionedName:  BlankOn 15.0
+    version:             12.0
+    shortVersion:        12.0
+    versionedName:       BlankOn 12.0 Verbeek
+    shortVersionedName:  BlankOn 12.0
     bootloaderEntryName: BlankOn
     productUrl:          https://blankonlinux.or.id
     supportUrl:          https://blankonlinux.or.id/support
@@ -24,8 +24,8 @@ sidebar: widget
 navigation: widget
 
 images:
-    productLogo:         "blankon-logo.png"
-    productIcon:         "blankon-logo.png"
+    productLogo:         "debian-logo.png"
+    productIcon:         "debian-logo.png"
     productWelcome:      "welcome.png"
 
 slideshow:               "show.qml"
