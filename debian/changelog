@@ -1,25 +1,18 @@
-calamares-settings-blankon (15.0.1-1) verbeek; urgency=medium
+calamares-settings-blankon (12.0.1-2) verbeek; urgency=medium
 
-  * Release 15.0.1
-    - New upstream BlankOn version
-    - Updated branding for 15.0.1
+  * Update helpers to use BlankOn repositories
+  * Fix branding version from 15.0 to 12.0
+  * Fix image references in branding.desc
+  * Update release codename to verbeek in calamares-sources-media
+  * Replace Debian repos with BlankOn repos in calamares-sources-final
+
+ -- luckynee <luckymahendra080503@gmail.com>  Tue, 13 Jan 2026 00:00:00 +0700
+
+calamares-settings-blankon (12.0.1-1) verbeek; urgency=medium
+
+  * Release 12.0.1
+	- New upstream BlankOn version
+	- Updated branding for 12.0.1
+	- Update settings , not adding debian repo
 
  -- luckynee <luckymahendra080503@gmail.com>  Mon, 12 Jan 2026 23:00:00 +0700
-
-calamares-settings-blankon (15.0.0-2) verbeek; urgency=medium
-
-  * Rebuild after reprepro cleanup
-    - Updated debian/install to use calamares-install-debian
-    - Fixed file path issues
-
- -- luckynee <luckymahendra080503@gmail.com>  Mon, 12 Jan 2026 22:45:00 +0700
-
-calamares-settings-blankon (15.0.0-1) verbeek; urgency=medium
-
-  * Initial release for BlankOn
-    - Based on Debian calamares-settings-debian
-    - Customized for BlankOn Linux 15.0
-    - Updated branding with BlankOn colors and logo
-    - Updated package metadata for BlankOn
-
- -- luckynee <luckymahendra080503@gmail.com>  Mon, 12 Jan 2026 19:42:00 +0700
