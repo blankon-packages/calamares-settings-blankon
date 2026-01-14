@@ -14,26 +14,26 @@ strings:
     versionedName:       BlankOn 12.0 Verbeek
     shortVersionedName:  BlankOn 12.0
     bootloaderEntryName: BlankOn
-    productUrl:          https://blankonlinux.or.id
-    supportUrl:          https://blankonlinux.or.id/support
+    productUrl:          https://blankonlinux.id
+    supportUrl:          https://blankonlinux.id/support
     knownIssuesUrl:      https://github.com/BlankOn/blankon-live-build/issues
-    releaseNotesUrl:     https://blankonlinux.or.id/releases
-    donateUrl:           https://blankonlinux.or.id
+    releaseNotesUrl:     https://blankonlinux.id/releases
+    donateUrl:           https://blankonlinux.id
 
 sidebar: widget
 navigation: widget
 
 images:
-    productLogo:         "debian-logo.png"
-    productIcon:         "debian-logo.png"
+    productLogo:         "blankon-logo.png"
+    productIcon:         "blankon-logo.png"
     productWelcome:      "welcome.png"
 
 slideshow:               "show.qml"
 
 style:
-   SidebarBackground:    "#4a90e2"
+   SidebarBackground:    "#b00000"
    SidebarText:          "#FFFFFF"
    SidebarTextCurrent:   "#fbfbfb"
-   SidebarBackgroundCurrent: "#5ca5e2"
+   SidebarBackgroundCurrent: "#ff0000"
 
 slideshowAPI: 2
