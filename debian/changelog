@@ -1,3 +1,13 @@
+calamares-settings-blankon (12.0.2-1) verbeek; urgency=medium
+
+  * New upstream release 12.0.2
+  * Changed calamares color pallete
+  * Fixed use blank on logo
+  * Updated URLs , delete the .or
+  * Updated Welcome image
+
+ -- luckynee <luckymahendra080503@gmail.com>  Wed, 14 Jan 2026 00:00:00 +0700
+
 calamares-settings-blankon (12.0.1-2) verbeek; urgency=medium
 
   * Update helpers to use BlankOn repositories
@@ -11,8 +21,13 @@ calamares-settings-blankon (12.0.1-2) verbeek; urgency=medium
 calamares-settings-blankon (12.0.1-1) verbeek; urgency=medium
 
   * Release 12.0.1
-	- New upstream BlankOn version
-	- Updated branding for 12.0.1
-	- Update settings , not adding debian repo
+  * Fork from Debian's calamares-settings-debian
+  * Updated branding to BlankOn Linux 12.0 Verbeek
+  * Changed helpers to use BlankOn repositories (arsip-dev.blankonlinux.id)
+  * Updated release codename to verbeek in sources helpers
+  * Fixed image references in branding (debian-logo.png)
+  * Updated version strings to match BlankOn 12.0
+  * Updated URLs to point to BlankOn website
+  * Changed branding colors to BlankOn theme (#4a90e2)
 
  -- luckynee <luckymahendra080503@gmail.com>  Mon, 12 Jan 2026 23:00:00 +0700

@@ -1,3 +1,10 @@
+[ 12.0.2 ]
+
+ * Changed calamares color pallete
+ * Fixed use blank on logo
+ * Updated URLs , delete the .or
+ * Updated Welcome image
+
 [ 12.0.1 ]
 
  * Fork from Debian's calamares-settings-debian
