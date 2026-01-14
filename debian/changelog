@@ -1,12 +1,17 @@
 calamares-settings-blankon (12.0.2-1) verbeek; urgency=medium
 
   * New upstream release 12.0.2
-  * Changed calamares color pallete
-  * Fixed use blank on logo
-  * Updated URLs , delete the .or
-  * Updated Welcome image
+  * Branding and asset updates:
+    - Updated Calamares color palette to BlankOn theme
+    - Fixed and updated BlankOn logo usage
+    - Updated Welcome and Slideshow images
+    - Updated URLs (removed .or suffix)
+  * Technical changes:
+    - Renamed installer script from calamares-install-debian to
+      calamares-install-blankon
+    - Updated desktop launcher and GSettings overrides to reflect renaming
 
- -- luckynee <luckymahendra080503@gmail.com>  Wed, 14 Jan 2026 00:00:00 +0700
+ -- luckynee <luckymahendra080503@gmail.com>  Wed, 14 Jan 2026 13:30:00 +0700
 
 calamares-settings-blankon (12.0.1-2) verbeek; urgency=medium
 
