@@ -2,6 +2,10 @@
 [org.gnome.shell]
 favorite-apps=['calamares-install-debian.desktop', 'firefox-esr.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Yelp.desktop']
 
+[org.gnome.desktop.background]
+picture-uri='file:///usr/share/backgrounds/blankon/wallpaper.png'
+picture-uri-dark='file:///usr/share/backgrounds/blankon/wallpaper.png'
+
 # We don't want the screensaver to enable on the live media while installing
 [org.gnome.desktop.lockdown]
 disable-lock-screen=true
