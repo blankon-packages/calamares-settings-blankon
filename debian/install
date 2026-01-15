@@ -4,7 +4,7 @@ helpers/* usr/share/calamares/helpers
 *.desktop usr/share/applications
 calamares-install-blankon usr/bin
 artwork/install-blankon.png usr/share/pixmaps
-artwork/wallpaper.png usr/share/pixmaps
+artwork/wallpaper.png usr/share/backgrounds/blankon
 conf/96_calamares-settings-blankon.gschema.override usr/share/glib-2.0/schemas
 conf/calamares-desktop-icon.desktop etc/xdg/autostart
 add-calamares-desktop-icon usr/bin

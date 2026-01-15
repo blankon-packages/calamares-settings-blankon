@@ -1,6 +1,6 @@
 # Launcher icons
 [org.gnome.shell]
-favorite-apps=['calamares-install-debian.desktop', 'firefox-esr.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Yelp.desktop']
+favorite-apps=['calamares-install-blankon.desktop', 'firefox-esr.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Yelp.desktop']
 
 [org.gnome.desktop.background]
 picture-uri='file:///usr/share/backgrounds/blankon/wallpaper.png'
