@@ -1,31 +1,14 @@
-Description: <short summary of the patch>
- TODO: Put a short summary on the line above and replace this paragraph
- with a longer explanation of this change. Complete the meta-information
- with other relevant fields (see below for details). To make it easier, the
- information below has been extracted from the changelog. Adjust it or drop
- it.
- .
- calamares-settings-blankon (11.0.4-1blankon3) verbeek; urgency=medium
- .
-   * Non-maintainer upload.
-   *
+Description: BlankOn branding and configuration customizations
+ Transforms calamares-settings-debian into calamares-settings-blankon
+ with BlankOn-specific branding, installer scripts, module configurations,
+ and desktop integration.
 Author: Herpiko Dwi Aguno <herpiko@gmail.com>
+Forwarded: not-needed
+Last-Update: 2026-02-07
 
----
-The information above should follow the Patch Tagging Guidelines, please
-checkout http://dep.debian.net/deps/dep3/ to learn about the format. Here
-are templates for supplementary fields that you might want to add:
-
-Origin: <vendor|upstream|other>, <url of original patch>
-Bug: <url in upstream bugtracker>
-Bug-Debian: https://bugs.debian.org/<bugnumber>
-Bug-Ubuntu: https://launchpad.net/bugs/<bugnumber>
-Forwarded: <no|not-needed|url proving that it has been forwarded>
-Reviewed-By: <name and email of someone who approved the patch>
-Last-Update: 2021-01-16
-
---- calamares-settings-blankon-11.0.4.orig/add-calamares-desktop-icon
-+++ calamares-settings-blankon-11.0.4/add-calamares-desktop-icon
+diff -ruN calamares-settings-blankon-11.0.4.orig/add-calamares-desktop-icon calamares-settings-blankon-11.0.4/add-calamares-desktop-icon
+--- calamares-settings-blankon-11.0.4.orig/add-calamares-desktop-icon	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/add-calamares-desktop-icon	2026-02-07 14:19:38.009806947 +0700
 @@ -1,5 +1,5 @@
  #!/bin/sh
 -# Creates an "Install Debian" icon on the live session tested with:
@@ -33,7 +16,7 @@ Last-Update: 2021-01-16
  # Xfce, LXDE, LXqt, Gnome, KDE, Mate, Cinnamon
  
  # We query xdg-user-dir because the Desktop directory has different
-@@ -10,18 +10,18 @@ DESKTOP=$(xdg-user-dir DESKTOP)
+@@ -10,30 +10,30 @@
  # creation script.
  mkdir -p $DESKTOP
  
@@ -41,12 +24,12 @@ Last-Update: 2021-01-16
 +# Among the BlankOn desktop environments, LXDE is the only one
  # that behaves completely different.
  if [ -f /usr/bin/lxsession ]; then
--    echo "[Desktop Entry]" > $DESKTOP/install-debian.desktop
--    echo "Type=Link" >> $DESKTOP/install-debian.desktop
--    echo "Name=Install Debian" >> $DESKTOP/install-debian.desktop
--    echo "Icon=install-debian" >> $DESKTOP/install-debian.desktop
--    echo "URL=/usr/share/applications/install-debian.desktop" \
--          >> $DESKTOP/install-debian.desktop
+-    echo "[Desktop Entry]" > $DESKTOP/calamares-install-debian.desktop
+-    echo "Type=Link" >> $DESKTOP/calamares-install-debian.desktop
+-    echo "Name=Install Debian" >> $DESKTOP/calamares-install-debian.desktop
+-    echo "Icon=install-debian" >> $DESKTOP/calamares-install-debian.desktop
+-    echo "URL=/usr/share/applications/calamares-install-debian.desktop" \
+-          >> $DESKTOP/calamares-install-debian.desktop
 +    echo "[Desktop Entry]" > $DESKTOP/install-blankon.desktop
 +    echo "Type=Link" >> $DESKTOP/install-blankon.desktop
 +    echo "Name=Install BlankOn" >> $DESKTOP/install-blankon.desktop
@@ -54,15 +37,32 @@ Last-Update: 2021-01-16
 +    echo "URL=/usr/share/applications/install-blankon.desktop" \
 +          >> $DESKTOP/install-blankon.desktop
  else
--    cp /usr/share/applications/install-debian.desktop $DESKTOP
+-    cp /usr/share/applications/calamares-install-debian.desktop $DESKTOP
 +    cp /usr/share/applications/install-blankon.desktop $DESKTOP
      # Xfce needs this executable otherwise it complains, everything
      # else doesn't seem to care either way.
--    chmod +x $DESKTOP/install-debian.desktop
+-    chmod +x $DESKTOP/calamares-install-debian.desktop
 +    chmod +x $DESKTOP/install-blankon.desktop
  fi
---- /dev/null
-+++ calamares-settings-blankon-11.0.4/calamares/branding/blankon/branding.desc
+ 
+ # Set desktop launcher as trusted under Xfce (See: #1037299)
+ if [ "$XDG_CURRENT_DESKTOP" = "XFCE" ]; then
+-    gio set --type=string ~/Desktop/calamares-install-debian.desktop \
++    gio set --type=string ~/Desktop/install-blankon.desktop \
+         metadata::trusted true
+-    gio set --type=string ~/Desktop/calamares-install-debian.desktop \
++    gio set --type=string ~/Desktop/install-blankon.desktop \
+         metadata::xfce-exe-checksum \
+-        "$(sha256sum ~/Desktop/calamares-install-debian.desktop | cut -f1 -d' ')"
+-    touch ~/Desktop/calamares-install-debian.desktop
++        "$(sha256sum ~/Desktop/install-blankon.desktop | cut -f1 -d' ')"
++    touch ~/Desktop/install-blankon.desktop
+ fi
+ 
+ # Preload calamares binaries and libraries using idle disk cycles
+diff -ruN calamares-settings-blankon-11.0.4.orig/calamares/branding/blankon/branding.desc calamares-settings-blankon-11.0.4/calamares/branding/blankon/branding.desc
+--- calamares-settings-blankon-11.0.4.orig/calamares/branding/blankon/branding.desc	1970-01-01 07:00:00.000000000 +0700
++++ calamares-settings-blankon-11.0.4/calamares/branding/blankon/branding.desc	2026-02-07 14:18:57.408655700 +0700
 @@ -0,0 +1,37 @@
 +---
 +componentName:   blankon
@@ -101,9 +101,10 @@ Last-Update: 2021-01-16
 +   sidebarTextSelect:    "#292F34"
 +
 +slideshowAPI: 2
---- /dev/null
-+++ calamares-settings-blankon-11.0.4/calamares/branding/blankon/show.qml
-@@ -0,0 +1,51 @@
+diff -ruN calamares-settings-blankon-11.0.4.orig/calamares/branding/blankon/show.qml calamares-settings-blankon-11.0.4/calamares/branding/blankon/show.qml
+--- calamares-settings-blankon-11.0.4.orig/calamares/branding/blankon/show.qml	1970-01-01 07:00:00.000000000 +0700
++++ calamares-settings-blankon-11.0.4/calamares/branding/blankon/show.qml	2026-02-07 14:18:57.410231028 +0700
+@@ -0,0 +1,69 @@
 +/* === This file is part of Calamares - <http://github.com/calamares> ===
 + *
 + *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
@@ -130,7 +131,7 @@ Last-Update: 2021-01-16
 +    id: presentation
 +
 +    Timer {
-+        interval: 20000
++        interval: 15000
 +        repeat: true
 +        onTriggered: presentation.goToNextSlide()
 +    }
@@ -146,8 +147,26 @@ Last-Update: 2021-01-16
 +        Text {
 +            anchors.horizontalCenter: background1.horizontalCenter
 +            anchors.top: background1.bottom
-+            text: "Welcome to BlankOn GNU/Linux.<br/>"+
-+                  "The rest of the installation is automated and should complete in a few minutes."
++            text: "Selamat datang di BlankOn GNU/Linux.<br/>"+
++                  "Selanjutnya, pemasangan akan dijalankan secara otomatis dan akan selesai dalam beberapa menit lagi."
++            wrapMode: Text.WordWrap
++            width: 600
++            horizontalAlignment: Text.Center
++        }
++    }
++
++    Slide {
++        Image {
++            id: background2
++            source: "slide1.png"
++            width: 467; height: 280
++            fillMode: Image.PreserveAspectFit
++            anchors.centerIn: parent
++        }
++        Text {
++            anchors.horizontalCenter: background2.horizontalCenter
++            anchors.top: background2.bottom
++            text: "Siap untuk memulai kemandirian berperangkat lunak?"
 +            wrapMode: Text.WordWrap
 +            width: 600
 +            horizontalAlignment: Text.Center
@@ -155,9 +174,10 @@ Last-Update: 2021-01-16
 +    }
 +
 +}
---- calamares-settings-blankon-11.0.4.orig/calamares/modules/bootloader.conf
-+++ calamares-settings-blankon-11.0.4/calamares/modules/bootloader.conf
-@@ -43,7 +43,7 @@ efiBootMgr: "efibootmgr"
+diff -ruN calamares-settings-blankon-11.0.4.orig/calamares/modules/bootloader.conf calamares-settings-blankon-11.0.4/calamares/modules/bootloader.conf
+--- calamares-settings-blankon-11.0.4.orig/calamares/modules/bootloader.conf	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/calamares/modules/bootloader.conf	2026-02-07 14:19:06.339023788 +0700
+@@ -43,7 +43,7 @@
  # setting the option here, keep in mind that the name is sanitized
  # (problematic characters, see above, are replaced).
  #
@@ -166,18 +186,528 @@ Last-Update: 2021-01-16
  
  # Optionally install a copy of the GRUB EFI bootloader as the EFI
  # fallback loader (either bootia32.efi or bootx64.efi depending on
---- calamares-settings-blankon-11.0.4.orig/calamares/modules/packages.conf
-+++ calamares-settings-blankon-11.0.4/calamares/modules/packages.conf
-@@ -11,4 +11,5 @@ operations:
+diff -ruN calamares-settings-blankon-11.0.4.orig/calamares/modules/fstab.conf calamares-settings-blankon-11.0.4/calamares/modules/fstab.conf
+--- calamares-settings-blankon-11.0.4.orig/calamares/modules/fstab.conf	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/calamares/modules/fstab.conf	2026-02-07 14:18:57.419282004 +0700
+@@ -1,11 +1,11 @@
+ ---
+ mountOptions:
+     default: defaults,noatime
+-    btrfs: defaults,noatime
++    btrfs: defaults,noatime,space_cache,autodefrag
+ ssdExtraMountOptions:
+     ext4: discard
+     jfs: discard
+     xfs: discard
+     swap: discard
+-    btrfs: discard,compress=zstd:3
+-crypttabOptions: luks,discard,keyscript=/bin/cat
++    btrfs: discard,compress=lzo
++crypttabOptions: luks,keyscript=/bin/cat
+diff -ruN calamares-settings-blankon-11.0.4.orig/calamares/modules/mount.conf calamares-settings-blankon-11.0.4/calamares/modules/mount.conf
+--- calamares-settings-blankon-11.0.4.orig/calamares/modules/mount.conf	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/calamares/modules/mount.conf	2026-02-07 14:18:57.420897848 +0700
+@@ -1,22 +1,17 @@
+-# SPDX-FileCopyrightText: no
+-# SPDX-License-Identifier: CC0-1.0
+-#
+ # Mount filesystems in the target (generally, before treating the
+ # target as a usable chroot / "live" system). Filesystems are
+ # automatically mounted from the partitioning module. Filesystems
+ # listed here are **extra**. The filesystems listed in *extraMounts*
+-# are mounted in all target systems.
++# are mounted in all target systems. The filesystems listed in
++# *extraMountsEfi* are mounted in the target system **only** if
++# the host machine uses UEFI.
+ ---
+ # Extra filesystems to mount. The key's value is a list of entries; each
+-# entry has five keys:
++# entry has four keys:
+ #   - device    The device node to mount
+-#   - fs (optional) The filesystem type to use
++#   - fs        The filesystem type to use
+ #   - mountPoint Where to mount the filesystem
+-#   - options (optional) An array of options to pass to mount
+-#   - efi (optional) A boolean that when true is only mounted for UEFI installs
+-#
+-# The device is not mounted if the mountPoint is unset or if the fs is
+-# set to unformatted.
++#   - options (optional) Extra options to pass to mount(8)
+ #
+ extraMounts:
+     - device: proc
+@@ -27,18 +22,15 @@
+       mountPoint: /sys
+     - device: /dev
+       mountPoint: /dev
+-      options: [ bind ]
++      options: bind
+     - device: tmpfs
+       fs: tmpfs
+       mountPoint: /run
+     - device: /run/udev
+       mountPoint: /run/udev
+-      options: [ bind ]
++      options: bind
++
++extraMountsEfi:
+     - device: efivarfs
+       fs: efivarfs
+       mountPoint: /sys/firmware/efi/efivars
+-      efi: true
+-    - device: /dev/pts
+-      mountPoint: /dev/pts
+-      options: [ bind ]
+-      # /dev/pts is required by apt for storing the logs
+diff -ruN calamares-settings-blankon-11.0.4.orig/calamares/modules/packages.conf calamares-settings-blankon-11.0.4/calamares/modules/packages.conf
+--- calamares-settings-blankon-11.0.4.orig/calamares/modules/packages.conf	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/calamares/modules/packages.conf	2026-02-07 14:19:06.340803249 +0700
+@@ -11,4 +11,5 @@
        - 'live-tools'
        - 'live-task-localisation'
        - 'live-task-recommended'
 -      - 'calamares-settings-debian'
 +      - 'calamares-settings-blankon'
 +      - 'debian-installer-launcher'
---- calamares-settings-blankon-11.0.4.orig/calamares/settings.conf
-+++ calamares-settings-blankon-11.0.4/calamares/settings.conf
-@@ -100,7 +100,7 @@ sequence:
+diff -ruN calamares-settings-blankon-11.0.4.orig/calamares/modules/partition.conf calamares-settings-blankon-11.0.4/calamares/modules/partition.conf
+--- calamares-settings-blankon-11.0.4.orig/calamares/modules/partition.conf	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/calamares/modules/partition.conf	1970-01-01 07:00:00.000000000 +0700
+@@ -1,385 +0,0 @@
+-# SPDX-FileCopyrightText: no
+-# SPDX-License-Identifier: CC0-1.0
+-#
+-
+-# Options for EFI system partition.
+-#
+-# - *mountPoint*
+-#   This setting specifies the mount point of the EFI system partition. Some
+-#   distributions (Fedora, Debian, Manjaro, etc.) use /boot/efi, others (KaOS,
+-#   etc.) use just /boot.
+-#
+-#   Defaults to "/boot/efi", may be empty (but weird effects ensue)
+-# - *recommendedSize*
+-#   This optional setting specifies the size of the EFI system partition.
+-#   If nothing is specified, the default size of 300MiB will be used.
+-#   When writing quantities here, M is treated as MiB, and if you really
+-#   want one-million (10^6) bytes, use MB.
+-# - *minimumSize*
+-#   This optional setting specifies the absolute minimum size of the EFI
+-#   system partition. If nothing is specified, the *recommendedSize*
+-#   is used instead.
+-# - *label*
+-#   This optional setting specifies the name of the EFI system partition (see
+-#   PARTLABEL; gpt only; requires KPMCore >= 4.2.0).
+-#   If nothing is specified, the partition name is left unset.
+-#
+-# Going below the *recommended* size is allowed, but the user will
+-# get a warning that it might not work. Going below the *minimum*
+-# size is not allowed and the user will be told it will not work.
+-#
+-# Both quantities must be at least 32MiB, this is enforced by the EFI
+-# spec. If minimum is not specified, it defaults to the recommended
+-# size. Distro's that allow more user latitude can set the minimum lower.
+-efi:
+-    mountPoint:         "/boot/efi"
+-    recommendedSize:    300MiB
+-    minimumSize:        32MiB
+-    label:              "EFI"
+-
+-# Deprecated alias of efi.mountPoint
+-# efiSystemPartition:     "/boot/efi"
+-
+-# Deprecated alias of efi.recommendedSize
+-# efiSystemPartitionSize:          300MiB
+-
+-# Deprecated alias of efi.label
+-# efiSystemPartitionName:     EFI
+-
+-# In autogenerated partitioning, allow the user to select a swap size?
+-# If there is exactly one choice, no UI is presented, and the user
+-# cannot make a choice -- this setting is used. If there is more than
+-# one choice, a UI is presented.
+-#
+-# Legacy settings *neverCreateSwap* and *ensureSuspendToDisk* correspond
+-# to values of *userSwapChoices* as follows:
+-#    - *neverCreateSwap* is true, means [none]
+-#    - *neverCreateSwap* is false, *ensureSuspendToDisk* is false, [small]
+-#    - *neverCreateSwap* is false, *ensureSuspendToDisk* is true, [suspend]
+-#
+-# Autogenerated swap sizes are as follows:
+-#    - *suspend*: Swap is always at least total memory size,
+-#      and up to 4GiB RAM follows the rule-of-thumb 2 * memory;
+-#      from 4GiB to 8 GiB it stays steady at 8GiB, and over 8 GiB memory
+-#      swap is the size of main memory.
+-#    - *small*: Follows the rules above, but Swap is at
+-#      most 8GiB, and no more than 10% of available disk.
+-# In both cases, a fudge factor (usually 10% extra) is applied so that there
+-# is some space for administrative overhead (e.g. 8 GiB swap will allocate
+-# 8.8GiB on disk in the end).
+-#
+-# If *file* is enabled here, make sure to have the *fstab* module
+-# as well (later in the exec phase) so that the swap file is
+-# actually created.
+-userSwapChoices:
+-    - none      # Create no swap, use no swap
+-    - small     # Up to 4GB
+-    - suspend   # At least main memory size
+-    # - reuse     # Re-use existing swap, but don't create any (unsupported right now)
+-    - file      # To swap file instead of partition
+-
+-# This optional setting specifies the name of the swap partition (see
+-# PARTLABEL; gpt only; requires KPMCore >= 4.2.0).
+-# If nothing is specified, the partition name is left unset.
+-# swapPartitionName:      swap
+-
+-# LEGACY SETTINGS (these will generate a warning)
+-# ensureSuspendToDisk:    true
+-# neverCreateSwap:        false
+-
+-# This setting specifies the LUKS generation (i.e LUKS1, LUKS2) used internally by
+-# cryptsetup when creating an encrypted partition.
+-#
+-# This option is set to luks1 by default, as grub doesn't support LUKS2 + Argon2id
+-# currently. On the other hand grub does support LUKS2 with PBKDF2 and could therefore be
+-# also set to luks2. Also there are some patches for grub and Argon2.
+-# See: https://aur.archlinux.org/packages/grub-improved-luks2-git
+-#
+-# Choices: luks1, luks2 (in addition, "luks" means "luks1")
+-#
+-# The default is luks1
+-#
+-luksGeneration: luks2
+-
+-# This setting determines if encryption should be allowed when using zfs.  This
+-# setting has no effect unless zfs support is provided.
+-#
+-# This setting is to handle the fact that some bootloaders(such as grub) do not
+-# support zfs encryption.
+-#
+-# The default is true
+-#
+-# allowZfsEncryption: true
+-
+-# Correctly draw nested (e.g. logical) partitions as such.
+-drawNestedPartitions:   false
+-
+-# Show/hide partition labels on manual partitioning page.
+-alwaysShowPartitionLabels: true
+-
+-# Allow manual partitioning.
+-#
+-# When set to false, this option hides the "Manual partitioning" button,
+-# limiting the user's choice to "Erase", "Replace" or "Alongside".
+-# This can be useful when using a custom partition layout we don't want
+-# the user to modify.
+-#
+-# If nothing is specified, manual partitioning is enabled.
+-#allowManualPartitioning:   true
+-
+-# Show not encrypted boot partition warning.
+-#
+-# When set to false, this option does not show the
+-# "Boot partition not encrypted" warning when encrypting the
+-# root partition but not /boot partition.
+-#
+-# If nothing is specified, the warning is shown.
+-#showNotEncryptedBootMessage:   true
+-
+-# Initial selection on the Choice page
+-#
+-# There are four radio buttons (in principle: erase, replace, alongside, manual),
+-# and you can pick which of them, if any, is initially selected. For most
+-# installers, "none" is the right choice: it makes the user pick something specific,
+-# rather than accidentally being able to click past an important choice (in particular,
+-# "erase" is a dangerous choice).
+-#
+-# The default is "none"
+-#
+-initialPartitioningChoice: none
+-#
+-# Similarly, some of the installation choices may offer a choice of swap;
+-# the available choices depend on *userSwapChoices*, above, and this
+-# setting can be used to pick a specific one.
+-#
+-# The default is "none" (no swap) if that is one of the enabled options, otherwise
+-# one of the items from the options.
+-initialSwapChoice: none
+-
+-# armInstall
+-#
+-# Leaves 16MB empty at the start of a drive when partitioning
+-# where usually the u-boot loader goes
+-#
+-# armInstall: false
+-
+-# Default partition table type, used when a "erase" disk is made.
+-#
+-# When erasing a disk, a new partition table is created on disk.
+-# In other cases, e.g. Replace and Alongside, as well as when using
+-# manual partitioning, this partition table exists already on disk
+-# and it is left unmodified.
+-#
+-# Possible values: gpt, msdos (or other names defined by KPMcore).
+-# Names are case-sensitive.
+-#
+-# If nothing is specified, Calamares defaults to "gpt" if system is
+-# efi or "msdos" otherwise.
+-#
+-# defaultPartitionTableType: msdos
+-
+-# Requirement for partition table type
+-#
+-# Restrict the installation on disks that match the type of partition
+-# tables that are specified.
+-#
+-# Possible values: msdos, gpt (or other names defined by KPMcore).
+-# Names are case-sensitive.
+-#
+-# If nothing is specified, Calamares defaults to both "msdos" and "gpt".
+-#
+-# requiredPartitionTableType: gpt
+-# requiredPartitionTableType:
+-#     - msdos
+-#     - gpt
+-
+-# Default filesystem type, used when a "new" partition is made.
+-#
+-# When replacing a partition, the new filesystem type will be from the
+-# defaultFileSystemType value. In other cases, e.g. Erase and Alongside,
+-# as well as when using manual partitioning and creating a new
+-# partition, this filesystem type is pre-selected. Note that
+-# editing a partition in manual-creation mode will not automatically
+-# change the filesystem type to this default value -- it is not
+-# creating a new partition.
+-#
+-# Suggested values: ext2, ext3, ext4, reiser, xfs, jfs, btrfs
+-# If nothing is specified, Calamares defaults to "ext4".
+-#
+-# Names are case-sensitive and defined by KPMCore.
+-defaultFileSystemType:  "ext4"
+-
+-# Selectable filesystem type, used when "erase" is done.
+-#
+-# When erasing the disk, the *defaultFileSystemType* is used (see
+-# above), but it is also possible to give users a choice:
+-# list suitable filesystems here. A drop-down is provided
+-# to pick which is the filesystems will be used.
+-#
+-# The value *defaultFileSystemType* is added to this list (with a warning)
+-# if not present; the default pick is the *defaultFileSystemType*.
+-#
+-# If not specified at all, uses *defaultFileSystemType* without a
+-# warning (this matches traditional no-choice-available behavior best).
+-# availableFileSystemTypes:  ["ext4","f2fs"]
+-
+-# Per-directory filesystem restrictions.
+-#
+-# This optional setting specifies what filesystems the user can and cannot use
+-# for various directories and mountpoints when using manual partitioning.
+-#
+-# If nothing is specified, the only restriction enforced by default is that
+-# the EFI system partition must use the fat32 filesystem.
+-#
+-# Otherwise, the filesystem restrictions are defined as follow:
+-#
+-# directoryFilesystemRestrictions:
+-#     - directory: "any"
+-#       allowedFilesystemTypes: ["all"]
+-#     - directory: "/"
+-#       allowedFilesystemTypes: ["ext4","xfs","btrfs","jfs","f2fs"]
+-#     - mountpoint: "efi"
+-#       allowedFilesystemTypes: ["fat32"]
+-#       onlyWhenMountpoint: true
+-#
+-# There can be any number of mountpoints listed, each entry having the
+-# following attributes:
+-#   - mountpoint: mountpoint's full path
+-#                 or
+-#                 "any" to specify a global whitelist that applies to all
+-#                 mountpoints
+-#                 or
+-#                 "efi" to specify a whitelist specific to the EFI system
+-#                 partition, wherever that partition is located
+-#   - allowedFilesystemTypes: the list of all filesystems valid for this
+-#                             mountpoint. If the list contains exactly one
+-#                             element, and that element is the special value
+-#                             "any", all filesystem types recognized by
+-#                             Calamares will be allowed.
+-#   - onlyWhenMountpoint: Whether the restriction should apply only when the
+-#                         specified directory is a mountpoint. When set to
+-#                         true, Calamares will only enforce the listed
+-#                         restrictions when the user makes a separate partition
+-#                         for this directory and assigns the mountpoint
+-#                         accordingly. When set to false, Calamares will
+-#                         ensure this directory uses the specified filesystem
+-#                         even if the directory is part of a filesystem on a
+-#                         different mountpoint. Defaults to false.
+-
+-# The ClearMounts job unmounts / unmaps things before partitioning.
+-# Some special entries under /dev/mapper are excepted from this process.
+-# The example lists the three hard-coded exceptions which always apply
+-# (they don't need to be listed here). Add other names or wildcards (with
+-# a trailing '*') to this list if the live-ISO has additional mounts.
+-essentialMounts: [ "live-*", "control", "ventoy" ]
+-
+-# Show/hide LUKS related functionality in automated partitioning modes.
+-# Disable this if you choose not to deploy early unlocking support in GRUB2
+-# and/or your distribution's initramfs solution.
+-#
+-# BIG FAT WARNING:
+-#
+-# This option is unsupported, as it cuts out a crucial security feature.
+-# Disabling LUKS and shipping Calamares without a correctly configured GRUB2
+-# and initramfs is considered suboptimal use of the Calamares software. The
+-# Calamares team will not provide user support for any potential issue that
+-# may arise as a consequence of setting this option to false.
+-# It is strongly recommended that system integrators put in the work to support
+-# LUKS unlocking support in GRUB2 and initramfs/dracut/mkinitcpio/etc.
+-# For more information on setting up GRUB2 for Calamares with LUKS, see
+-# https://github.com/calamares/calamares/wiki/Deploy-LUKS
+-#
+-# If nothing is specified, LUKS is enabled in automated modes.
+-#enableLuksAutomatedPartitioning:    true
+-
+-# When enableLuksAutomatedPartitioning is true, this option will pre-check
+-# encryption checkbox. This option is only usefull to help people to not forget
+-# to cypher their disk when installing in enterprise (for exemple).
+-#preCheckEncryption:    false
+-
+-# LVM support
+-#
+-# There is only one sub-key available, *enable* (defaults to true)
+-# which can be used to show (default) or hide the LVM buttons in the partitioning module.
+-lvm:
+-    enable: false
+-
+-# Partition layout.
+-#
+-# This optional setting specifies a custom partition layout.
+-#
+-# If nothing is specified, the default partition layout is a single partition
+-# for root that uses 100% of the space and uses the filesystem defined by
+-# defaultFileSystemType.
+-#
+-# Note: the EFI system partition is prepended automatically to the layout if
+-# needed; the swap partition is appended to the layout if enabled (selections
+-# "small" or "suspend" in *userSwapChoices*).
+-#
+-# Otherwise, the partition layout is defined as follow:
+-#
+-# partitionLayout:
+-#     - name: "rootfs"
+-#       type: "4f68bce3-e8cd-4db1-96e7-fbcaf984b709"
+-#       filesystem: "ext4"
+-#       noEncrypt: false
+-#       mountPoint: "/"
+-#       size: 20%
+-#       minSize: 500M
+-#       maxSize: 10G
+-#       attributes: 0xffff000000000003
+-#     - name: "home"
+-#       type: "933ac7e1-2eb4-4f13-b844-0e14e2aef915"
+-#       filesystem: "ext4"
+-#       noEncrypt: false
+-#       mountPoint: "/home"
+-#       size: 3G
+-#       minSize: 1.5G
+-#       features:
+-#         64bit: false
+-#         casefold: true
+-#     - name: "data"
+-#       filesystem: "fat32"
+-#       mountPoint: "/data"
+-#       features:
+-#         sector-size: 4096
+-#         sectors-per-cluster: 128
+-#       size: 100%
+-#
+-# There can be any number of partitions, each entry having the following attributes:
+-#   - name: filesystem label
+-#           and
+-#           partition name (gpt only; since KPMCore 4.2.0)
+-#   - uuid: partition uuid (optional parameter; gpt only; requires KPMCore >= 4.2.0)
+-#   - type: partition type (optional parameter; gpt only; requires KPMCore >= 4.2.0)
+-#   - attributes: partition attributes (optional parameter; gpt only; requires KPMCore >= 4.2.0)
+-#   - filesystem: filesystem type (optional parameter)
+-#       - if not set at all, treat as "unformatted"
+-#       - if "unformatted", no filesystem will be created
+-#       - if "unknown" (or an unknown FS name, like "elephant") then the
+-#         default filesystem type, or the user's choice, will be applied instead
+-#         of "unknown" (e.g. the user might pick ext4, or xfs).
+-#   - noEncrypt: whether this partition is exempt from encryption if enabled (optional parameter; default is false)
+-#   - mountPoint: partition mount point (optional parameter; not mounted if unset)
+-#   - size: partition size in bytes (append 'K', 'M' or 'G' for KiB, MiB or GiB)
+-#           or
+-#           % of the available drive space if a '%' is appended to the value
+-#   - minSize: minimum partition size (optional parameter)
+-#   - maxSize: maximum partition size (optional parameter)
+-#   - features: filesystem features (optional parameter; requires KPMCore >= 4.2.0)
+-#       name: boolean or integer or string
+-
+-# Checking for available storage
+-#
+-# This overlaps with the setting of the same name in the welcome module's
+-# requirements section. If nothing is set by the welcome module, this
+-# value is used instead. It is still a problem if there is no required
+-# size set at all, and the replace and resize options will not be offered
+-# if no required size is set.
+-#
+-# The value is in Gibibytes (GiB).
+-#
+-# BIG FAT WARNING: except for OEM-phase-0 use, you should be using
+-#                  the welcome module, **and** configure this value in
+-#                  `welcome.conf`, not here.
+-# requiredStorage: 3.5
+diff -ruN calamares-settings-blankon-11.0.4.orig/calamares/modules/users.conf calamares-settings-blankon-11.0.4/calamares/modules/users.conf
+--- calamares-settings-blankon-11.0.4.orig/calamares/modules/users.conf	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/calamares/modules/users.conf	2026-02-07 14:18:57.422379310 +0700
+@@ -15,9 +15,3 @@
+ autologinGroup:  autologin
+ sudoersGroup:    sudo
+ setRootPassword: false
+-
+-passwordRequirements:
+-    nonempty: true
+-    minLength: 6  # Password at least this many characters
+-    maxLength: -1  # Password at most this many characters
+-
+diff -ruN calamares-settings-blankon-11.0.4.orig/calamares/modules/welcome.conf calamares-settings-blankon-11.0.4/calamares/modules/welcome.conf
+--- calamares-settings-blankon-11.0.4.orig/calamares/modules/welcome.conf	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/calamares/modules/welcome.conf	2026-02-07 14:18:57.423934310 +0700
+@@ -4,7 +4,7 @@
+ showReleaseNotesUrl:    true
+ 
+ requirements:
+-    requiredStorage:    15
++    requiredStorage:    10
+     requiredRam:        1.0
+     check:
+         - storage
+diff -ruN calamares-settings-blankon-11.0.4.orig/calamares/settings.conf calamares-settings-blankon-11.0.4/calamares/settings.conf
+--- calamares-settings-blankon-11.0.4.orig/calamares/settings.conf	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/calamares/settings.conf	2026-02-07 14:19:06.349955415 +0700
+@@ -62,8 +62,6 @@
+   - partition
+   - mount
+   - unpackfs
+-  - luksbootkeyfile
+-  - dpkg-unsafe-io
+   - sources-media
+   - machineid
+   - fstab
+@@ -79,10 +77,10 @@
+   - grubcfg
+   - bootloader
+   - packages
++  - luksbootkeyfile
+   - plymouthcfg
+   - initramfscfg
+   - initramfs
+-  - dpkg-unsafe-io-undo
+   - sources-media-unmount
+   - sources-final
+   - umount
+@@ -102,7 +100,7 @@
  # Only the name of the branding component (directory) should be
  # specified here, Calamares then takes care of finding it and
  # loading the contents.
@@ -186,12 +716,121 @@ Last-Update: 2021-01-16
  
  # If this is set to true, Calamares will show an "Are you sure?" prompt right
  # before each execution phase, i.e. at points of no return. If this is set to
---- /dev/null
-+++ calamares-settings-blankon-11.0.4/conf/96_calamares-settings-blankon.gschema.override
+diff -ruN calamares-settings-blankon-11.0.4.orig/calamares-install-debian calamares-settings-blankon-11.0.4/calamares-install-debian
+--- calamares-settings-blankon-11.0.4.orig/calamares-install-debian	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/calamares-install-debian	1970-01-01 07:00:00.000000000 +0700
+@@ -1,26 +0,0 @@
+-#!/bin/sh
+-###
+-# Wrapper for running calamares on Debian live media
+-###
+-
+-# Stale file left behind by live-build that messes with partitioning
+-sudo mv /etc/fstab /etc/fstab.orig.calamares
+-
+-# Allow Calamares to scale the window for hidpi displays
+-# This is fixed in the Calamares 3.3.0 series, so we can remove this
+-# once we switch to that
+-# Upstream commit that will make this obsolete:
+-#     https://github.com/calamares/calamares/commit/e9f011b686a0982fb7828e8ac02a8e0784d3b11f
+-# Upstream bug:
+-#     https://github.com/calamares/calamares/issues/1945
+-# Debian bug:
+-#     https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=992162
+-export QT_AUTO_SCREEN_SCALE_FACTOR=1
+-
+-# Access control to run calamares as root for xwayland
+-xhost +si:localuser:root
+-pkexec calamares
+-xhost -si:localuser:root
+-
+-# Restore stale fstab, for what it's worth
+-sudo mv /etc/fstab.orig.calamares /etc/fstab
+diff -ruN calamares-settings-blankon-11.0.4.orig/calamares-install-debian.desktop calamares-settings-blankon-11.0.4/calamares-install-debian.desktop
+--- calamares-settings-blankon-11.0.4.orig/calamares-install-debian.desktop	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/calamares-install-debian.desktop	1970-01-01 07:00:00.000000000 +0700
+@@ -1,13 +0,0 @@
+-[Desktop Entry]
+-Type=Application
+-Version=1.0
+-Name=Install Debian
+-GenericName=Calamares Installer
+-Exec=calamares-install-debian
+-Comment=Calamares — Installer for Debian Live
+-Keywords=calamares;system;install;debian;installer
+-Icon=install-debian
+-Terminal=false
+-Categories=Qt;System;
+-StartupWMClass=calamares
+-StartupNotify=True
+diff -ruN calamares-settings-blankon-11.0.4.orig/calamares-modules/bootloader-config/module.desc calamares-settings-blankon-11.0.4/calamares-modules/bootloader-config/module.desc
+--- calamares-settings-blankon-11.0.4.orig/calamares-modules/bootloader-config/module.desc	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/calamares-modules/bootloader-config/module.desc	2026-02-07 14:19:16.522750754 +0700
+@@ -2,5 +2,5 @@
+ type:       "job"
+ name:       "bootloader-config"
+ interface:  "process"
+-command:    "/usr/share/calamares/helpers/calamares-bootloader-config"
+-timeout:    1800 
++command:    "/usr/sbin/bootloader-config"
++timeout:    600 
+diff -ruN calamares-settings-blankon-11.0.4.orig/calamares-modules/dpkg-unsafe-io/module.desc calamares-settings-blankon-11.0.4/calamares-modules/dpkg-unsafe-io/module.desc
+--- calamares-settings-blankon-11.0.4.orig/calamares-modules/dpkg-unsafe-io/module.desc	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/calamares-modules/dpkg-unsafe-io/module.desc	1970-01-01 07:00:00.000000000 +0700
+@@ -1,6 +0,0 @@
+----
+-type:       "job"
+-name:       "dpkg-unsafe-io"
+-interface:  "process"
+-command:    "/usr/share/calamares/helpers/calamares-dpkg-unsafe-io"
+-timeout:    600
+diff -ruN calamares-settings-blankon-11.0.4.orig/calamares-modules/dpkg-unsafe-io-undo/module.desc calamares-settings-blankon-11.0.4/calamares-modules/dpkg-unsafe-io-undo/module.desc
+--- calamares-settings-blankon-11.0.4.orig/calamares-modules/dpkg-unsafe-io-undo/module.desc	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/calamares-modules/dpkg-unsafe-io-undo/module.desc	1970-01-01 07:00:00.000000000 +0700
+@@ -1,6 +0,0 @@
+----
+-type:       "job"
+-name:       "dpkg-unsafe-io-undo"
+-interface:  "process"
+-command:    "/usr/share/calamares/helpers/calamares-dpkg-unsafe-io -u"
+-timeout:    600
+diff -ruN calamares-settings-blankon-11.0.4.orig/calamares-modules/sources-final/module.desc calamares-settings-blankon-11.0.4/calamares-modules/sources-final/module.desc
+--- calamares-settings-blankon-11.0.4.orig/calamares-modules/sources-final/module.desc	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/calamares-modules/sources-final/module.desc	2026-02-07 14:19:16.524371287 +0700
+@@ -2,5 +2,5 @@
+ type:       "job"
+ name:       "sources-final"
+ interface:  "process"
+-command:    "/usr/share/calamares/helpers/calamares-sources-final"
++command:    "/usr/sbin/sources-final"
+ timeout:    600
+diff -ruN calamares-settings-blankon-11.0.4.orig/calamares-modules/sources-media/module.desc calamares-settings-blankon-11.0.4/calamares-modules/sources-media/module.desc
+--- calamares-settings-blankon-11.0.4.orig/calamares-modules/sources-media/module.desc	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/calamares-modules/sources-media/module.desc	2026-02-07 14:19:16.526050991 +0700
+@@ -2,5 +2,5 @@
+ type:       "job"
+ name:       "sources-media"
+ interface:  "process"
+-command:    "/usr/share/calamares/helpers/calamares-sources-media"
++command:    "/usr/sbin/sources-media"
+ timeout:    600
+diff -ruN calamares-settings-blankon-11.0.4.orig/calamares-modules/sources-media-unmount/module.desc calamares-settings-blankon-11.0.4/calamares-modules/sources-media-unmount/module.desc
+--- calamares-settings-blankon-11.0.4.orig/calamares-modules/sources-media-unmount/module.desc	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/calamares-modules/sources-media-unmount/module.desc	2026-02-07 14:19:16.527818290 +0700
+@@ -2,5 +2,5 @@
+ type:       "job"
+ name:       "sources-media-unmount"
+ interface:  "process"
+-command:    "/usr/share/calamares/helpers/calamares-sources-media -u"
++command:    "/usr/sbin/sources-media -u"
+ timeout:    600
+diff -ruN calamares-settings-blankon-11.0.4.orig/conf/96_calamares-settings-blankon.gschema.override calamares-settings-blankon-11.0.4/conf/96_calamares-settings-blankon.gschema.override
+--- calamares-settings-blankon-11.0.4.orig/conf/96_calamares-settings-blankon.gschema.override	1970-01-01 07:00:00.000000000 +0700
++++ calamares-settings-blankon-11.0.4/conf/96_calamares-settings-blankon.gschema.override	2026-02-07 14:18:57.411782531 +0700
 @@ -0,0 +1,10 @@
 +# Launcher icons
 +[org.gnome.shell]
-+favorite-apps=['install-blankon.desktop', 'firefox-esr.desktop', 'org.gnome.Terminal.desktop', 'rhythmbox.desktop', 'libreoffice-writer.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'yelp.desktop']
++favorite-apps=['install-blankon.desktop', 'firefox.desktop', 'org.gnome.Terminal.desktop', 'rhythmbox.desktop', 'libreoffice-writer.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'yelp.desktop']
 +
 +# We don't want the screensaver to enable on the live media while installing
 +[org.gnome.desktop.lockdown]
@@ -199,8 +838,134 @@ Last-Update: 2021-01-16
 +
 +[org.gnome.desktop.session]
 +idle-delay=0
---- /dev/null
-+++ calamares-settings-blankon-11.0.4/install-blankon
+diff -ruN calamares-settings-blankon-11.0.4.orig/conf/96_calamares-settings-debian.gschema.override calamares-settings-blankon-11.0.4/conf/96_calamares-settings-debian.gschema.override
+--- calamares-settings-blankon-11.0.4.orig/conf/96_calamares-settings-debian.gschema.override	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/conf/96_calamares-settings-debian.gschema.override	2026-02-07 14:19:16.530259193 +0700
+@@ -1,6 +1,6 @@
+ # Launcher icons
+ [org.gnome.shell]
+-favorite-apps=['calamares-install-debian.desktop', 'firefox-esr.desktop', 'org.gnome.Evolution.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'org.gnome.TextEditor.desktop', 'org.gnome.Calculator.desktop', 'org.gnome.Yelp.desktop']
++favorite-apps=['install-blankon.desktop', 'firefox-esr.desktop', 'org.gnome.Terminal.desktop', 'rhythmbox.desktop', 'libreoffice-writer.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'yelp.desktop']
+ 
+ # We don't want the screensaver to enable on the live media while installing
+ [org.gnome.desktop.lockdown]
+diff -ruN calamares-settings-blankon-11.0.4.orig/helpers/calamares-bootloader-config calamares-settings-blankon-11.0.4/helpers/calamares-bootloader-config
+--- calamares-settings-blankon-11.0.4.orig/helpers/calamares-bootloader-config	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/helpers/calamares-bootloader-config	1970-01-01 07:00:00.000000000 +0700
+@@ -1,27 +0,0 @@
+-#!/bin/bash
+-
+-CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
+-
+-# Install luks utilities if needed.
+-# Also, set secure permissions for the initramfs if we're configuring
+-# full-disk-encryption. The initramfs is re-generated later in the
+-# installation process so we only set the permissions snippet without
+-# regenerating the initramfs right now:
+-if [ "$(mount | grep $CHROOT" " | cut -c -16)" = "/dev/mapper/luks" ]; then
+-    echo "UMASK=0077" > $CHROOT/etc/initramfs-tools/conf.d/initramfs-permissions
+-    chroot $CHROOT apt-get -y install cryptsetup-initramfs cryptsetup keyutils
+-fi
+-
+-echo "Running bootloader-config..."
+-
+-if [ -d /sys/firmware/efi/efivars ]; then
+-    echo " * Installing grub-efi (uefi)..."
+-    DEBIAN_FRONTEND=noninteractive chroot $CHROOT apt-get -y install grub-efi
+-else
+-    echo " * install grub... (bios)"
+-    DEBIAN_FRONTEND=noninteractive chroot $CHROOT apt-get -y install grub-pc
+-fi
+-
+-# Re-enable os-prober:
+-sed -i "s/#GRUB_DISABLE_OS_PROBER=false/# OS_PROBER re-enabled by Debian Calamares installation:\nGRUB_DISABLE_OS_PROBER=false/g" $CHROOT/etc/default/grub
+-chroot $CHROOT /usr/sbin/update-grub
+diff -ruN calamares-settings-blankon-11.0.4.orig/helpers/calamares-dpkg-unsafe-io calamares-settings-blankon-11.0.4/helpers/calamares-dpkg-unsafe-io
+--- calamares-settings-blankon-11.0.4.orig/helpers/calamares-dpkg-unsafe-io	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/helpers/calamares-dpkg-unsafe-io	1970-01-01 07:00:00.000000000 +0700
+@@ -1,13 +0,0 @@
+-#!/bin/sh
+-
+-CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
+-
+-if [ "$1" = "-u" ]; then
+-    rm $CHROOT/etc/dpkg/dpkg.cfg.d/calamares-force-unsafe-io
+-    sync
+-    exit 0
+-fi
+-
+-echo "force-unsafe-io" > $CHROOT/etc/dpkg/dpkg.cfg.d/calamares-force-unsafe-io
+-
+-exit 0
+diff -ruN calamares-settings-blankon-11.0.4.orig/helpers/calamares-sources-final calamares-settings-blankon-11.0.4/helpers/calamares-sources-final
+--- calamares-settings-blankon-11.0.4.orig/helpers/calamares-sources-final	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/helpers/calamares-sources-final	1970-01-01 07:00:00.000000000 +0700
+@@ -1,25 +0,0 @@
+-#!/bin/sh
+-#
+-# Writes the final sources.list file
+-#
+-
+-CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
+-RELEASE="trixie"
+-
+-cat << EOF > $CHROOT/etc/apt/sources.list
+-# See https://wiki.debian.org/SourcesList for more information.
+-deb http://deb.debian.org/debian $RELEASE main non-free-firmware
+-deb-src http://deb.debian.org/debian $RELEASE main non-free-firmware
+-
+-deb http://deb.debian.org/debian $RELEASE-updates main non-free-firmware
+-deb-src http://deb.debian.org/debian $RELEASE-updates main non-free-firmware
+-
+-deb http://security.debian.org/debian-security/ $RELEASE-security main non-free-firmware
+-deb-src http://security.debian.org/debian-security/ $RELEASE-security main non-free-firmware
+-
+-# Backports allow you to install newer versions of software made available for this release
+-deb http://deb.debian.org/debian $RELEASE-backports main non-free-firmware
+-deb-src http://deb.debian.org/debian $RELEASE-backports main non-free-firmware
+-EOF
+-
+-exit 0
+diff -ruN calamares-settings-blankon-11.0.4.orig/helpers/calamares-sources-media calamares-settings-blankon-11.0.4/helpers/calamares-sources-media
+--- calamares-settings-blankon-11.0.4.orig/helpers/calamares-sources-media	2026-02-07 14:01:12.000000000 +0700
++++ calamares-settings-blankon-11.0.4/helpers/calamares-sources-media	1970-01-01 07:00:00.000000000 +0700
+@@ -1,33 +0,0 @@
+-#!/bin/sh
+-
+-CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
+-KNOWN_MEDIUM_PATHS="/run/live/medium /run/initramfs/live"
+-RELEASE="trixie"
+-
+-# Support both dracut and initramfs configurations to avoid substitutions
+-# in live-build, see: #1089618
+-for path in $KNOWN_MEDIUM_PATHS; do
+-    if [ "$(mount | grep $path | cut -f3 -d" ")" = "$path" ]; then
+-        MEDIUM_PATH=$path
+-    fi
+-done
+-
+-if [ "$1" = "-u" ]; then
+-    umount $CHROOT/$MEDIUM_PATH
+-    rm $CHROOT/etc/apt/sources.list.d/debian-live-media.list
+-    chroot $CHROOT apt-get update
+-    exit 0
+-fi
+-
+-# Remove the base sources, we will configure sources in a later phase
+-rm -f $CHROOT/etc/apt/sources.list.d/base.list
+-
+-mkdir -p $CHROOT/$MEDIUM_PATH
+-mount --bind $MEDIUM_PATH $CHROOT/$MEDIUM_PATH
+-echo "deb [trusted=yes] file:$MEDIUM_PATH $RELEASE main" > $CHROOT/etc/apt/sources.list.d/debian-live-media.list
+-chroot $CHROOT apt-get update
+-# Attempt safest way to remove cruft
+-rmdir $CHROOT/run/live/medium
+-rmdir $CHROOT/run/live
+-
+-exit 0
+diff -ruN calamares-settings-blankon-11.0.4.orig/install-blankon calamares-settings-blankon-11.0.4/install-blankon
+--- calamares-settings-blankon-11.0.4.orig/install-blankon	1970-01-01 07:00:00.000000000 +0700
++++ calamares-settings-blankon-11.0.4/install-blankon	2026-02-07 14:18:57.403880643 +0700
 @@ -0,0 +1,15 @@
 +#!/bin/sh
 +###
@@ -212,13 +977,14 @@ Last-Update: 2021-01-16
 +
 +# Access control to run calamares as root for xwayland
 +xhost +si:localuser:root
-+pkexec calamares
++pkexec calamares -d > /tmp/calamares-blankon.log
 +xhost -si:localuser:root
 +
 +# Restore stale fstab, for what it's worth
 +sudo mv /etc/fstab.orig.calamares /etc/fstab
---- /dev/null
-+++ calamares-settings-blankon-11.0.4/install-blankon.desktop
+diff -ruN calamares-settings-blankon-11.0.4.orig/install-blankon.desktop calamares-settings-blankon-11.0.4/install-blankon.desktop
+--- calamares-settings-blankon-11.0.4.orig/install-blankon.desktop	1970-01-01 07:00:00.000000000 +0700
++++ calamares-settings-blankon-11.0.4/install-blankon.desktop	2026-02-07 14:18:57.405501447 +0700
 @@ -0,0 +1,13 @@
 +[Desktop Entry]
 +Type=Application
@@ -233,51 +999,72 @@ Last-Update: 2021-01-16
 +Categories=Qt;System;
 +StartupWMClass=calamares
 +StartupNotify=True
---- calamares-settings-blankon-11.0.4.orig/scripts/sources-final
-+++ calamares-settings-blankon-11.0.4/scripts/sources-final
-@@ -4,18 +4,8 @@
- #
- 
- CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
--RELEASE="bullseye"
+diff -ruN calamares-settings-blankon-11.0.4.orig/scripts/bootloader-config calamares-settings-blankon-11.0.4/scripts/bootloader-config
+--- calamares-settings-blankon-11.0.4.orig/scripts/bootloader-config	1970-01-01 07:00:00.000000000 +0700
++++ calamares-settings-blankon-11.0.4/scripts/bootloader-config	2026-02-07 14:18:57.417644328 +0700
+@@ -0,0 +1,21 @@
++#!/bin/bash
++
++CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
++
++# Set secure permissions for the initramfs if we're configuring
++# full-disk-encryption. The initramfs is re-generated later in the
++# installation process so we only set the permissions snippet without
++# regenerating the initramfs right now:
++if [ "$(mount | grep $CHROOT" " | cut -c -16)" = "/dev/mapper/luks" ]; then
++    echo "UMASK=0077" > $CHROOT/etc/initramfs-tools/conf.d/initramfs-permissions
++fi
++
++echo "Running bootloader-config..."
++
++if [ -d /sys/firmware/efi/efivars ]; then
++    echo " * Installing grub-efi (uefi)..."
++    DEBIAN_FRONTEND=noninteractive chroot $CHROOT apt-get -y install --no-install-recommends efibootmgr grub-efi-amd64 cryptsetup keyutils
++else
++    echo " * install grub... (bios)"
++    DEBIAN_FRONTEND=noninteractive chroot $CHROOT apt-get -y install grub-pc cryptsetup keyutils
++fi
+diff -ruN calamares-settings-blankon-11.0.4.orig/scripts/sources-final calamares-settings-blankon-11.0.4/scripts/sources-final
+--- calamares-settings-blankon-11.0.4.orig/scripts/sources-final	1970-01-01 07:00:00.000000000 +0700
++++ calamares-settings-blankon-11.0.4/scripts/sources-final	2026-02-07 14:18:57.414666907 +0700
+@@ -0,0 +1,11 @@
++#!/bin/sh
++#
++# Writes the final sources.list file
++#
++
++CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
 +#RELEASE="verbeek"
- 
--cat << EOF > $CHROOT/etc/apt/sources.list
--# See https://wiki.debian.org/SourcesList for more information.
--deb http://deb.debian.org/debian $RELEASE main
--deb-src http://deb.debian.org/debian $RELEASE main
--
--deb http://deb.debian.org/debian $RELEASE-updates main
--deb-src http://deb.debian.org/debian $RELEASE-updates main
--
--deb http://security.debian.org/debian-security/ $RELEASE-updates main
--deb-src http://security.debian.org/debian-security/ $RELEASE-updates main
--EOF
++
 +cp /etc/apt/sources.list $CHROOT/etc/apt/sources.list
- 
- exit 0
---- calamares-settings-blankon-11.0.4.orig/scripts/sources-media
-+++ calamares-settings-blankon-11.0.4/scripts/sources-media
-@@ -2,11 +2,11 @@
- 
- CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
- MEDIUM_PATH="/run/live/medium"
--RELEASE="bullseye"
++
++exit 0
+diff -ruN calamares-settings-blankon-11.0.4.orig/scripts/sources-media calamares-settings-blankon-11.0.4/scripts/sources-media
+--- calamares-settings-blankon-11.0.4.orig/scripts/sources-media	1970-01-01 07:00:00.000000000 +0700
++++ calamares-settings-blankon-11.0.4/scripts/sources-media	2026-02-07 14:18:57.416131067 +0700
+@@ -0,0 +1,25 @@
++#!/bin/sh
++
++CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
++MEDIUM_PATH="/run/live/medium"
 +RELEASE="verbeek"
- 
- if [ "$1" = "-u" ]; then
-     umount $CHROOT/$MEDIUM_PATH
--    rm $CHROOT/etc/apt/sources.list.d/debian-live-media.list
++
++if [ "$1" = "-u" ]; then
++    umount $CHROOT/$MEDIUM_PATH
 +    rm $CHROOT/etc/apt/sources.list.d/blankon-live-media.list
-     chroot $CHROOT apt-get update
-     exit 0
- fi
-@@ -16,7 +16,7 @@ rm -f $CHROOT/etc/apt/sources.list.d/bas
- 
- mkdir -p $CHROOT/$MEDIUM_PATH
- mount --bind $MEDIUM_PATH $CHROOT/$MEDIUM_PATH
--echo "deb [trusted=yes] file:$MEDIUM_PATH $RELEASE main" > $CHROOT/etc/apt/sources.list.d/debian-live-media.list
++    chroot $CHROOT apt-get update
++    exit 0
++fi
++
++# Remove the base sources, we will configure sources in a later phase
++rm -f $CHROOT/etc/apt/sources.list.d/base.list
++
++mkdir -p $CHROOT/$MEDIUM_PATH
++mount --bind $MEDIUM_PATH $CHROOT/$MEDIUM_PATH
 +echo "deb [trusted=yes] file:$MEDIUM_PATH $RELEASE main" > $CHROOT/etc/apt/sources.list.d/blankon-live-media.list
- chroot $CHROOT apt-get update
- # Attempt safest way to remove cruft
- rmdir $CHROOT/run/live/medium
++chroot $CHROOT apt-get update
++# Attempt safest way to remove cruft
++rmdir $CHROOT/run/live/medium
++rmdir $CHROOT/run/live
++
++exit 0

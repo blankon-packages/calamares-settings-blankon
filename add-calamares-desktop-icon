@@ -25,3 +25,20 @@ else
     # else doesn't seem to care either way.
     chmod +x $DESKTOP/install-blankon.desktop
 fi
+
+# Set desktop launcher as trusted under Xfce (See: #1037299)
+if [ "$XDG_CURRENT_DESKTOP" = "XFCE" ]; then
+    gio set --type=string ~/Desktop/install-blankon.desktop \
+        metadata::trusted true
+    gio set --type=string ~/Desktop/install-blankon.desktop \
+        metadata::xfce-exe-checksum \
+        "$(sha256sum ~/Desktop/install-blankon.desktop | cut -f1 -d' ')"
+    touch ~/Desktop/install-blankon.desktop
+fi
+
+# Preload calamares binaries and libraries using idle disk cycles
+# so that it launches faster
+ionice -C Idle cat /usr/bin/calamares > /dev/null
+for file in $(ldd /usr/bin/calamares | awk '{print $3}'): do
+    ionice -C Idle cat $file > /dev/null
+done

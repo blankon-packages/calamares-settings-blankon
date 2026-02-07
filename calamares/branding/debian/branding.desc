@@ -3,35 +3,37 @@ componentName:   debian
 welcomeStyleCalamares: true
 welcomeExpandingLogo: true
 windowExpanding: normal
-windowSize: 800px,520px
+windowSize: 800px,580px
 windowPlacement: center
 
 strings:
     productName:         Debian GNU/Linux
     shortProductName:    Debian
-    version:             11 (bullseye)
-    shortVersion:        11
-    versionedName:       Debian 11 (bullseye)
-    shortVersionedName:  Debian 11
+    version:             14
+    shortVersion:        14
+    versionedName:       Debian 14
+    shortVersionedName:  Debian 14
     bootloaderEntryName: Debian
     productUrl:          https://debian.org
     supportUrl:          https://www.debian.org/support
     knownIssuesUrl:      https://bugs.debian.org
-    releaseNotesUrl:     https://www.debian.org/releases/bullseye/releasenotes
+    releaseNotesUrl:     https://www.debian.org/releases/forky/releasenotes
     donateUrl:           https://www.debian.org
+
+sidebar: widget
+navigation: widget
 
 images:
     productLogo:         "debian-logo.png"
     productIcon:         "debian-logo.png"
     productWelcome:      "welcome.png"
-    # productWallpaper:  "wallpaper.png"
 
 slideshow:               "show.qml"
 
 style:
-   sidebarBackground:    "#2c3133"
-   sidebarText:          "#FFFFFF"
-   sidebarTextSelect:    "#4d7079"
-   sidebarTextSelect:    "#292F34"
+   SidebarBackground:    "#26475b"
+   SidebarText:          "#FFFFFF"
+   SidebarTextCurrent:   "#fbfbfb"
+   SidebarBackgroundCurrent: "#265370"
 
 slideshowAPI: 2
