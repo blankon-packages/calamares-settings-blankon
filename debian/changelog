@@ -1,6 +1,12 @@
+calamares-settings-blankon (11.0.4-1blankon8) verbeek; urgency=medium
+
+  * Add Breaks/Replaces for calamares-settings to prevent co-installation
+
+ -- Herpiko Dwi Aguno <herpiko@gmail.com>  Sat, 07 Feb 2026 00:00:00 +0000
+
 calamares-settings-blankon (11.0.4-1blankon7) verbeek; urgency=medium
 
-  * Install only grub-efi-amd64 and efibootmgr without signed package 
+  * Install only grub-efi-amd64 and efibootmgr without signed package
 
  -- Herpiko Dwi Aguno <herpiko@gmail.com>  Sun, 27 Jun 2021 13:52:20 +0000
 
