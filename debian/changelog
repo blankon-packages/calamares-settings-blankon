@@ -1,3 +1,10 @@
+calamares-settings-blankon (12.0.4-1) verbeek; urgency=medium
+
+  * Add Conflicts and Replaces for calamares-settings to ensure
+    calamares-settings-blankon is prioritized as a drop-in replacement
+
+ -- Herpiko Dwi Aguno <herpiko@gmail.com>  Sun, 08 Feb 2026 00:00:00 +0700
+
 calamares-settings-blankon (12.0.3-1) verbeek; urgency=medium
 
   * Branding and asset updates:
