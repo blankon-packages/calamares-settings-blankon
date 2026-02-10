@@ -1,0 +1,36 @@
+diff --git a/add-calamares-desktop-icon b/add-calamares-desktop-icon
+index 3b7068d..d536854 100755
+--- a/add-calamares-desktop-icon
++++ b/add-calamares-desktop-icon
+@@ -39,6 +39,6 @@ fi
+ # Preload calamares binaries and libraries using idle disk cycles
+ # so that it launches faster
+ ionice -C Idle cat /usr/bin/calamares > /dev/null
+-for file in $(ldd /usr/bin/calamares | awk '{print $3}'): do
++for file in $(ldd /usr/bin/calamares | awk '{print $3}'); do
+     ionice -C Idle cat $file > /dev/null
+ done
+diff --git a/calamares/branding/blankon/branding.desc b/calamares/branding/blankon/branding.desc
+index 2e498fa..215a2d3 100644
+--- a/calamares/branding/blankon/branding.desc
++++ b/calamares/branding/blankon/branding.desc
+@@ -32,6 +32,6 @@ style:
+    sidebarBackground:    "#2c3133"
+    sidebarText:          "#FFFFFF"
+    sidebarTextSelect:    "#4d7079"
+-   sidebarTextSelect:    "#292F34"
++   sidebarTextCurrent:   "#292F34"
+ 
+ slideshowAPI: 2
+diff --git a/conf/96_calamares-settings-blankon.gschema.override b/conf/96_calamares-settings-blankon.gschema.override
+index f9a21ac..e7226c2 100644
+--- a/conf/96_calamares-settings-blankon.gschema.override
++++ b/conf/96_calamares-settings-blankon.gschema.override
+@@ -1,6 +1,6 @@
+ # Launcher icons
+ [org.gnome.shell]
+-favorite-apps=['install-blankon.desktop', 'firefox.desktop', 'org.gnome.Terminal.desktop', 'rhythmbox.desktop', 'libreoffice-writer.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'yelp.desktop']
++favorite-apps=['calamares-install-blankon.desktop', 'firefox.desktop', 'org.gnome.Terminal.desktop', 'rhythmbox.desktop', 'libreoffice-writer.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Software.desktop', 'yelp.desktop']
+ 
+ # We don't want the screensaver to enable on the live media while installing
+ [org.gnome.desktop.lockdown]

@@ -1,3 +1,34 @@
+calamares-settings-blankon (14.0.2-1blankon5) verbeek; urgency=medium
+
+  * Change calamares-install-debian to calamares-install-blankon in debian/install
+  * Change --package calamares-settings-debian to --package calamares-settings-blankon in debian/preinst
+  * Change calamares-settings-debian to calamares-settings-blankon in debian/lintian-overrides
+  * Fix syntax error in add-calamares-desktop-icon
+  * Change install-blankon.desktop to calamares-install-blankon.desktop in conf/96_calamares-settings-blankon.gschema.override
+
+ -- Lucky Mahendra Purba <luckymahendra080503@gmail.com>  Tue, 10 Feb 2026 16:04:00 +0000
+
+calamares-settings-blankon (14.0.2-1blankon4) verbeek; urgency=medium
+
+  * Force delete sources.list
+
+ -- Lucky Mahendra Purba <luckymahendra080503@gmail.com>  Sat, 31 Jan 2026 06:57:26 +0000
+
+calamares-settings-blankon (14.0.2-1blankon3) verbeek; urgency=medium
+
+  * Force swapfile as default for all installations
+
+ -- Lucky Mahendra Purba <luckymahendra080503@gmail.com>  Sat, 24 Jan 2026 15:36:36 +0000
+
+calamares-settings-blankon (14.0.2-1blankon2) verbeek; urgency=medium
+
+  * Fork from debian
+  * BlankOn branding
+  * Modernize archive sources
+  * Fix blankon.sources path
+
+ -- Lucky Mahendra Purba <luckymahendra080503@gmail.com>  Fri, 23 Jan 2026 13:56:11 +0000
+
 calamares-settings-debian (14.0.2-1) unstable; urgency=medium
 
   * New release
