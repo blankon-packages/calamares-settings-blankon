@@ -1,3 +1,13 @@
+From: Jonathan Carter <jcc@debian.org>
+Date: Tue, 10 Feb 2026 17:01:15 +0000
+Subject: fix-blankon-packaging
+
+---
+ add-calamares-desktop-icon                          | 2 +-
+ calamares/branding/blankon/branding.desc            | 2 +-
+ conf/96_calamares-settings-blankon.gschema.override | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
 diff --git a/add-calamares-desktop-icon b/add-calamares-desktop-icon
 index 3b7068d..d536854 100755
 --- a/add-calamares-desktop-icon

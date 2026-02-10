@@ -1,6 +1,5 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Lucky Mahendra Purba <luckymahendra080503@gmail.com>
-Date: Jan, 23 2026 11:51:47 +0000
+Date: Fri, 23 Jan 2026 11:51:47 +0000
 Subject: [PATCH] <short summary of the patch>
 
 TODO: Put a short summary on the line above and replace this paragraph
@@ -8,21 +7,30 @@ with a longer explanation of this change. Complete the meta-information
 with other relevant fields (see below for details). To make it easier, the
 information below has been extracted from the changelog. Adjust it or drop
 it.
-
 ---
-The information above should follow the Patch Tagging Guidelines, please
-checkout https://dep.debian.net/deps/dep3/ to learn about the format. Here
-are templates for supplementary fields that you might want to add:
+ add-calamares-desktop-icon                         | 28 ++++++++--------
+ calamares-install-blankon                          | 15 +++++++++
+ calamares-install-blankon.desktop                  | 13 ++++++++
+ calamares/branding/blankon/branding.desc           | 37 ++++++++++++++++++++++
+ calamares/branding/{debian => blankon}/show.qml    | 24 ++++++++++++--
+ calamares/modules/bootloader.conf                  |  2 +-
+ calamares/modules/packages.conf                    |  2 +-
+ calamares/settings.conf                            |  2 +-
+ .../96_calamares-settings-blankon.gschema.override | 10 ++++++
+ helpers/calamares-bootloader-config                |  2 +-
+ helpers/calamares-sources-final                    | 21 ++++--------
+ helpers/calamares-sources-media                    |  6 ++--
+ 12 files changed, 124 insertions(+), 38 deletions(-)
+ create mode 100644 calamares-install-blankon
+ create mode 100644 calamares-install-blankon.desktop
+ create mode 100644 calamares/branding/blankon/branding.desc
+ copy calamares/branding/{debian => blankon}/show.qml (66%)
+ create mode 100644 conf/96_calamares-settings-blankon.gschema.override
 
-Origin: (upstream|backport|vendor|other), (<patch-url>|commit:<commit-id>)
-Bug: <upstream-bugtracker-url>
-Bug-<Vendor>: <vendor-bugtracker-url>
-Forwarded: (no|not-needed|<patch-forwarded-url>)
-Applied-Upstream: <version>, (<commit-url>|commit:<commid-id>)
-Reviewed-By: <name and email of someone who approved/reviewed the patch>
-
---- calamares-settings-blankon-14.0.2.orig/add-calamares-desktop-icon
-+++ calamares-settings-blankon-14.0.2/add-calamares-desktop-icon
+diff --git a/add-calamares-desktop-icon b/add-calamares-desktop-icon
+index 8b64954..3b7068d 100755
+--- a/add-calamares-desktop-icon
++++ b/add-calamares-desktop-icon
 @@ -1,5 +1,5 @@
  #!/bin/sh
 -# Creates an "Install Debian" icon on the live session tested with:
@@ -74,8 +82,11 @@ Reviewed-By: <name and email of someone who approved/reviewed the patch>
  fi
  
  # Preload calamares binaries and libraries using idle disk cycles
+diff --git a/calamares-install-blankon b/calamares-install-blankon
+new file mode 100644
+index 0000000..f4ae3d2
 --- /dev/null
-+++ calamares-settings-blankon-14.0.2/calamares-install-blankon
++++ b/calamares-install-blankon
 @@ -0,0 +1,15 @@
 +#!/bin/sh
 +###
@@ -92,8 +103,11 @@ Reviewed-By: <name and email of someone who approved/reviewed the patch>
 +
 +# Restore stale fstab, for what it's worth
 +sudo mv /etc/fstab.orig.calamares /etc/fstab
+diff --git a/calamares-install-blankon.desktop b/calamares-install-blankon.desktop
+new file mode 100644
+index 0000000..dfcdf54
 --- /dev/null
-+++ calamares-settings-blankon-14.0.2/calamares-install-blankon.desktop
++++ b/calamares-install-blankon.desktop
 @@ -0,0 +1,13 @@
 +[Desktop Entry]
 +Type=Application
@@ -108,8 +122,11 @@ Reviewed-By: <name and email of someone who approved/reviewed the patch>
 +Categories=Qt;System;
 +StartupWMClass=calamares
 +StartupNotify=True
+diff --git a/calamares/branding/blankon/branding.desc b/calamares/branding/blankon/branding.desc
+new file mode 100644
+index 0000000..2e498fa
 --- /dev/null
-+++ calamares-settings-blankon-14.0.2/calamares/branding/blankon/branding.desc
++++ b/calamares/branding/blankon/branding.desc
 @@ -0,0 +1,37 @@
 +---
 +componentName:   blankon
@@ -148,51 +165,28 @@ Reviewed-By: <name and email of someone who approved/reviewed the patch>
 +   sidebarTextSelect:    "#292F34"
 +
 +slideshowAPI: 2
---- /dev/null
-+++ calamares-settings-blankon-14.0.2/calamares/branding/blankon/show.qml
-@@ -0,0 +1,69 @@
-+/* === This file is part of Calamares - <http://github.com/calamares> ===
-+ *
-+ *   Copyright 2015, Teo Mrnjavac <teo@kde.org>
-+ *   Copyright 2018-2019, Jonathan Carter <jcc@debian.org>
-+ *
-+ *   Calamares is free software: you can redistribute it and/or modify
-+ *   it under the terms of the GNU General Public License as published by
-+ *   the Free Software Foundation, or (at your option) any later version.
-+ *
-+ *   Calamares is distributed in the hope that it will be useful,
-+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
-+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-+ *   GNU General Public License for more details.
-+ *
-+ *   You should have received a copy of the GNU General Public License
-+ *   along with Calamares. If not, see <http://www.gnu.org/licenses/>.
-+ */
-+
-+import QtQuick 2.0;
-+import calamares.slideshow 1.0;
-+
-+Presentation
-+{
-+    id: presentation
-+
-+    Timer {
+diff --git a/calamares/branding/debian/show.qml b/calamares/branding/blankon/show.qml
+similarity index 66%
+copy from calamares/branding/debian/show.qml
+copy to calamares/branding/blankon/show.qml
+index 81be54d..ba0054c 100644
+--- a/calamares/branding/debian/show.qml
++++ b/calamares/branding/blankon/show.qml
+@@ -24,7 +24,7 @@ Presentation
+     id: presentation
+ 
+     Timer {
+-        interval: 20000
 +        interval: 15000
-+        repeat: true
-+        onTriggered: presentation.goToNextSlide()
-+    }
-+
-+    Slide {
-+        Image {
-+            id: background1
-+            source: "slide1.png"
-+            width: 467; height: 280
-+            fillMode: Image.PreserveAspectFit
-+            anchors.centerIn: parent
-+        }
-+        Text {
-+            anchors.horizontalCenter: background1.horizontalCenter
-+            anchors.top: background1.bottom
+         repeat: true
+         onTriggered: presentation.goToNextSlide()
+     }
+@@ -40,8 +40,26 @@ Presentation
+         Text {
+             anchors.horizontalCenter: background1.horizontalCenter
+             anchors.top: background1.bottom
+-            text: qsTr("Welcome to Debian GNU/Linux.<br/>"+
+-                  "The rest of the installation is automated and should complete in a few minutes.")
 +            text: "Selamat datang di BlankOn GNU/Linux.<br/>"+
 +                  "Selanjutnya, pemasangan akan dijalankan secara otomatis dan akan selesai dalam beberapa menit lagi."
 +            wrapMode: Text.WordWrap
@@ -213,15 +207,13 @@ Reviewed-By: <name and email of someone who approved/reviewed the patch>
 +            anchors.horizontalCenter: background2.horizontalCenter
 +            anchors.top: background2.bottom
 +            text: "Siap untuk memulai kemandirian berperangkat lunak?"
-+            wrapMode: Text.WordWrap
-+            width: 600
-+            horizontalAlignment: Text.Center
-+        }
-+    }
-+
-+}
---- calamares-settings-blankon-14.0.2.orig/calamares/modules/bootloader.conf
-+++ calamares-settings-blankon-14.0.2/calamares/modules/bootloader.conf
+             wrapMode: Text.WordWrap
+             width: 600
+             horizontalAlignment: Text.Center
+diff --git a/calamares/modules/bootloader.conf b/calamares/modules/bootloader.conf
+index e2e6dc8..1e0bcb8 100644
+--- a/calamares/modules/bootloader.conf
++++ b/calamares/modules/bootloader.conf
 @@ -43,7 +43,7 @@ efiBootMgr: "efibootmgr"
  # setting the option here, keep in mind that the name is sanitized
  # (problematic characters, see above, are replaced).
@@ -231,16 +223,20 @@ Reviewed-By: <name and email of someone who approved/reviewed the patch>
  
  # Optionally install a copy of the GRUB EFI bootloader as the EFI
  # fallback loader (either bootia32.efi or bootx64.efi depending on
---- calamares-settings-blankon-14.0.2.orig/calamares/modules/packages.conf
-+++ calamares-settings-blankon-14.0.2/calamares/modules/packages.conf
+diff --git a/calamares/modules/packages.conf b/calamares/modules/packages.conf
+index e18bae0..86fb835 100644
+--- a/calamares/modules/packages.conf
++++ b/calamares/modules/packages.conf
 @@ -11,4 +11,4 @@ operations:
        - 'live-tools'
        - 'live-task-localisation'
        - 'live-task-recommended'
 -      - 'calamares-settings-debian'
 +      - 'calamares-settings-blankon'
---- calamares-settings-blankon-14.0.2.orig/calamares/settings.conf
-+++ calamares-settings-blankon-14.0.2/calamares/settings.conf
+diff --git a/calamares/settings.conf b/calamares/settings.conf
+index c452c6f..c4b2794 100644
+--- a/calamares/settings.conf
++++ b/calamares/settings.conf
 @@ -102,7 +102,7 @@ sequence:
  # Only the name of the branding component (directory) should be
  # specified here, Calamares then takes care of finding it and
@@ -250,8 +246,11 @@ Reviewed-By: <name and email of someone who approved/reviewed the patch>
  
  # If this is set to true, Calamares will show an "Are you sure?" prompt right
  # before each execution phase, i.e. at points of no return. If this is set to
+diff --git a/conf/96_calamares-settings-blankon.gschema.override b/conf/96_calamares-settings-blankon.gschema.override
+new file mode 100644
+index 0000000..f9a21ac
 --- /dev/null
-+++ calamares-settings-blankon-14.0.2/conf/96_calamares-settings-blankon.gschema.override
++++ b/conf/96_calamares-settings-blankon.gschema.override
 @@ -0,0 +1,10 @@
 +# Launcher icons
 +[org.gnome.shell]
@@ -263,8 +262,10 @@ Reviewed-By: <name and email of someone who approved/reviewed the patch>
 +
 +[org.gnome.desktop.session]
 +idle-delay=0
---- calamares-settings-blankon-14.0.2.orig/helpers/calamares-bootloader-config
-+++ calamares-settings-blankon-14.0.2/helpers/calamares-bootloader-config
+diff --git a/helpers/calamares-bootloader-config b/helpers/calamares-bootloader-config
+index 5c0ec9f..fcf589f 100755
+--- a/helpers/calamares-bootloader-config
++++ b/helpers/calamares-bootloader-config
 @@ -23,5 +23,5 @@ else
  fi
  
@@ -272,8 +273,10 @@ Reviewed-By: <name and email of someone who approved/reviewed the patch>
 -sed -i "s/#GRUB_DISABLE_OS_PROBER=false/# OS_PROBER re-enabled by Debian Calamares installation:\nGRUB_DISABLE_OS_PROBER=false/g" $CHROOT/etc/default/grub
 +sed -i "s/#GRUB_DISABLE_OS_PROBER=false/# OS_PROBER re-enabled by Blankon Calamares installation:\nGRUB_DISABLE_OS_PROBER=false/g" $CHROOT/etc/default/grub
  chroot $CHROOT /usr/sbin/update-grub
---- calamares-settings-blankon-14.0.2.orig/helpers/calamares-sources-final
-+++ calamares-settings-blankon-14.0.2/helpers/calamares-sources-final
+diff --git a/helpers/calamares-sources-final b/helpers/calamares-sources-final
+index de19a50..8eff21a 100755
+--- a/helpers/calamares-sources-final
++++ b/helpers/calamares-sources-final
 @@ -4,22 +4,15 @@
  #
  
@@ -304,8 +307,10 @@ Reviewed-By: <name and email of someone who approved/reviewed the patch>
  EOF
  
  exit 0
---- calamares-settings-blankon-14.0.2.orig/helpers/calamares-sources-media
-+++ calamares-settings-blankon-14.0.2/helpers/calamares-sources-media
+diff --git a/helpers/calamares-sources-media b/helpers/calamares-sources-media
+index cff0c1d..a3d3833 100755
+--- a/helpers/calamares-sources-media
++++ b/helpers/calamares-sources-media
 @@ -2,7 +2,7 @@
  
  CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
@@ -324,7 +329,7 @@ Reviewed-By: <name and email of someone who approved/reviewed the patch>
      chroot $CHROOT apt-get update
      exit 0
  fi
-@@ -24,7 +24,7 @@ rm -f $CHROOT/etc/apt/sources.list.d/bas
+@@ -24,7 +24,7 @@ rm -f $CHROOT/etc/apt/sources.list.d/base.list
  
  mkdir -p $CHROOT/$MEDIUM_PATH
  mount --bind $MEDIUM_PATH $CHROOT/$MEDIUM_PATH
