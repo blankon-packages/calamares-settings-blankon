@@ -3,3 +3,4 @@ fix-wrong-sources-path
 force-swapfile-default
 delete-sources
 fix-blankon-packaging
+0006-fix-typo-in-branding.desc.patch

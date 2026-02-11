@@ -1,0 +1,28 @@
+From: Lucky Mahendra Purba <luckymahendra080503@gmail.com>
+Date: Wed, 11 Feb 2026 15:00:32 +0000
+Subject: fix: typo in branding.desc
+
+---
+ calamares/branding/blankon/branding.desc | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/calamares/branding/blankon/branding.desc b/calamares/branding/blankon/branding.desc
+index 215a2d3..2342ed2 100644
+--- a/calamares/branding/blankon/branding.desc
++++ b/calamares/branding/blankon/branding.desc
+@@ -24,14 +24,13 @@ images:
+     productLogo:         "blankon-logo.png"
+     productIcon:         "blankon-logo.png"
+     productWelcome:      "welcome.png"
+-    # productWallpaper:  "wallpaper.png"
+ 
+ slideshow:               "show.qml"
+ 
+ style:
+    sidebarBackground:    "#2c3133"
+    sidebarText:          "#FFFFFF"
+-   sidebarTextSelect:    "#4d7079"
+    sidebarTextCurrent:   "#292F34"
++   SidebarBackgroundCurrent: "#FFFFFF"
+ 
+ slideshowAPI: 2
