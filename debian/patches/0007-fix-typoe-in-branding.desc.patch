@@ -1,0 +1,44 @@
+From: Lucky Mahendra Purba <luckymahendra080503@gmail.com>
+Date: Thu, 12 Feb 2026 21:34:36 +0700
+Subject: fix: typoe in branding.desc
+
+---
+ calamares/branding/blankon/branding.desc | 11 +++++++----
+ 1 file changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/calamares/branding/blankon/branding.desc b/calamares/branding/blankon/branding.desc
+index 2342ed2..ce19aee 100644
+--- a/calamares/branding/blankon/branding.desc
++++ b/calamares/branding/blankon/branding.desc
+@@ -9,7 +9,7 @@ windowPlacement: center
+ strings:
+     productName:         BlankOn GNU/Linux
+     shortProductName:    BlankOn
+-    version:             12 (verbeek)
++    version:             12
+     shortVersion:        12
+     versionedName:       BlankOn 12 (verbeek)
+     shortVersionedName:  BlankOn 12
+@@ -20,6 +20,9 @@ strings:
+     releaseNotesUrl:     https://blankon.github.io/
+     donateUrl:           https://blankon.github.io/
+ 
++sidebar: widget
++navigation: widget
++
+ images:
+     productLogo:         "blankon-logo.png"
+     productIcon:         "blankon-logo.png"
+@@ -28,9 +31,9 @@ images:
+ slideshow:               "show.qml"
+ 
+ style:
+-   sidebarBackground:    "#2c3133"
+-   sidebarText:          "#FFFFFF"
+-   sidebarTextCurrent:   "#292F34"
++   SidebarBackground:    "#2c3133"
++   SidebarText:          "#FFFFFF"
++   SidebarTextCurrent:   "#292F34"
+    SidebarBackgroundCurrent: "#FFFFFF"
+ 
+ slideshowAPI: 2
