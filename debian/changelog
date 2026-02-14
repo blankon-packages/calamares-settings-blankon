@@ -1,3 +1,9 @@
+calamares-settings-blankon (14.0.2-1blankon8) verbeek; urgency=medium
+
+  * Remove live user (blankon) from installed system if another user exists
+
+ -- Herpiko Dwi Aguno <herpiko@gmail.com>  Sat, 14 Feb 2026 17:00:00 +0700
+
 calamares-settings-blankon (14.0.2-1blankon7) verbeek; urgency=medium
 
   * add image binary
