@@ -1,0 +1,27 @@
+From: Lucky Mahendra Purba <luckymahendra080503@gmail.com>
+Date: Sun, 15 Feb 2026 00:52:41 +0700
+Subject: fix: change branding from 12 to 26
+
+---
+ calamares/branding/blankon/branding.desc | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/calamares/branding/blankon/branding.desc b/calamares/branding/blankon/branding.desc
+index ce19aee..92a50e9 100644
+--- a/calamares/branding/blankon/branding.desc
++++ b/calamares/branding/blankon/branding.desc
+@@ -9,10 +9,10 @@ windowPlacement: center
+ strings:
+     productName:         BlankOn GNU/Linux
+     shortProductName:    BlankOn
+-    version:             12
+-    shortVersion:        12
+-    versionedName:       BlankOn 12 (verbeek)
+-    shortVersionedName:  BlankOn 12
++    version:             26
++    shortVersion:        26
++    versionedName:       BlankOn 26 (verbeek)
++    shortVersionedName:  BlankOn 26
+     bootloaderEntryName: BlankOn
+     productUrl:          https://blankon.github.io/
+     supportUrl:          https://blankon.github.io/
