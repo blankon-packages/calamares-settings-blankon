@@ -5,3 +5,4 @@ delete-sources
 fix-blankon-packaging
 0006-fix-typo-in-branding.desc.patch
 0007-fix-typoe-in-branding.desc.patch
+remove-live-user
