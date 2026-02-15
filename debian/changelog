@@ -1,6 +1,7 @@
 calamares-settings-blankon (14.0.2-1blankon8) verbeek; urgency=medium
 
   * change version format from 12 to 26
+  * add remove calamares when instalation complete
 
  -- Lucky Mahendra Purba <luckymahendra080503@gmail.com>  Sat, 14 Feb 2026 17:54:50 +0000
 

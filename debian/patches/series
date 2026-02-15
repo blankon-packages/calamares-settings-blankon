@@ -6,3 +6,4 @@ fix-blankon-packaging
 0006-fix-typo-in-branding.desc.patch
 0007-fix-typoe-in-branding.desc.patch
 0008-fix-change-branding-from-12-to-26.patch
+0009-feat-remove-calamares-after-install.patch

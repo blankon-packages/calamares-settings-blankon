@@ -1,0 +1,17 @@
+From: Lucky Mahendra Purba <luckymahendra080503@gmail.com>
+Date: Sun, 15 Feb 2026 11:07:32 +0700
+Subject: feat: remove calamares after install
+
+---
+ calamares/modules/packages.conf | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/calamares/modules/packages.conf b/calamares/modules/packages.conf
+index 86fb835..8bc0c81 100644
+--- a/calamares/modules/packages.conf
++++ b/calamares/modules/packages.conf
+@@ -12,3 +12,4 @@ operations:
+       - 'live-task-localisation'
+       - 'live-task-recommended'
+       - 'calamares-settings-blankon'
++      - 'calamares'
