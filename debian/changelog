@@ -1,6 +1,7 @@
 calamares-settings-blankon (14.0.2-1blankon9) verbeek; urgency=medium
 
   * add nvidia cuda repo for debian13 to get latest nvidia driver
+  * remove cuda-debian13-x86_64.list
 
  -- Lucky Mahendra Purba <luckymahendra080503@gmail.com>  Tue, 17 Feb 2026 11:12:53 +0000
 

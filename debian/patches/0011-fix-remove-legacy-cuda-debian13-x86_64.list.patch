@@ -1,0 +1,31 @@
+From: Lucky Mahendra Purba <luckymahendra080503@gmail.com>
+Date: Tue, 17 Feb 2026 19:24:45 +0700
+Subject: fix: remove legacy cuda-debian13-x86_64.list
+
+---
+ helpers/calamares-sources-final | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/helpers/calamares-sources-final b/helpers/calamares-sources-final
+index a171c79..c7a9c04 100755
+--- a/helpers/calamares-sources-final
++++ b/helpers/calamares-sources-final
+@@ -23,12 +23,16 @@ Signed-By: /usr/share/keyrings/cuda-archive-keyring.gpg
+ 
+ EOF
+ 
+-
+-
+ # Remove legacy sources.list if it exists to ensure clean APT configuration
+ if [ -f "$CHROOT/etc/apt/sources.list" ]; then
+     echo "Removing legacy /etc/apt/sources.list"
+     rm -f "$CHROOT/etc/apt/sources.list"
+ fi
+ 
++# Remove legacy cuda-debian13-x86_64.list if it exists to ensure clean APT configuration
++if [ -f "$CHROOT/etc/apt/sources.list.d/cuda-debian13-x86_64.list" ]; then
++    echo "Removing legacy /etc/apt/sources.list.d/cuda-debian13-x86_64.list"
++    rm -f "$CHROOT/etc/apt/sources.list.d/cuda-debian13-x86_64.list"
++fi
++
+ exit 0
