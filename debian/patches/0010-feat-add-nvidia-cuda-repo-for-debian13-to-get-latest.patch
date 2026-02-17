@@ -1,0 +1,39 @@
+From: Lucky Mahendra Purba <luckymahendra080503@gmail.com>
+Date: Tue, 17 Feb 2026 18:10:17 +0700
+Subject: feat: add nvidia cuda repo for debian13 to get latest nvidia driver
+ version
+
+---
+ helpers/calamares-sources-final | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+diff --git a/helpers/calamares-sources-final b/helpers/calamares-sources-final
+index 5c3490e..a171c79 100755
+--- a/helpers/calamares-sources-final
++++ b/helpers/calamares-sources-final
+@@ -6,7 +6,7 @@
+ CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
+ RELEASE="verbeek"
+ 
+-cat <<EOF > $CHROOT/etc/apt/sources.list.d/blankon.sources
++cat <<EOF > "$CHROOT"/etc/apt/sources.list.d/blankon.sources
+ Types: deb deb-src
+ URIs: http://arsip-dev.blankonlinux.id/dev/
+ Suites: $RELEASE
+@@ -15,6 +15,16 @@ Signed-By: /usr/share/keyrings/blankon-archive-keyring.gpg
+ 
+ EOF
+ 
++cat <<EOF > "$CHROOT"/etc/apt/sources.list.d/nvidia-cuda.sources
++Types: deb
++URIs: https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64/
++Suites: /
++Signed-By: /usr/share/keyrings/cuda-archive-keyring.gpg
++
++EOF
++
++
++
+ # Remove legacy sources.list if it exists to ensure clean APT configuration
+ if [ -f "$CHROOT/etc/apt/sources.list" ]; then
+     echo "Removing legacy /etc/apt/sources.list"
