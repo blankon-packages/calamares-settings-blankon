@@ -1,0 +1,44 @@
+From: Lucky Mahendra Purba <luckymahendra080503@gmail.com>
+Date: Sun, 22 Feb 2026 23:02:22 +0700
+Subject: fix: calamares not showing slide 1 image
+
+---
+ calamares/branding/blankon/show.qml | 20 +-------------------
+ 1 file changed, 1 insertion(+), 19 deletions(-)
+
+diff --git a/calamares/branding/blankon/show.qml b/calamares/branding/blankon/show.qml
+index ba0054c..b9771d6 100644
+--- a/calamares/branding/blankon/show.qml
++++ b/calamares/branding/blankon/show.qml
+@@ -24,7 +24,7 @@ Presentation
+     id: presentation
+ 
+     Timer {
+-        interval: 15000
++        interval: 20000
+         repeat: true
+         onTriggered: presentation.goToNextSlide()
+     }
+@@ -48,22 +48,4 @@ Presentation
+         }
+     }
+ 
+-    Slide {
+-        Image {
+-            id: background2
+-            source: "slide1.png"
+-            width: 467; height: 280
+-            fillMode: Image.PreserveAspectFit
+-            anchors.centerIn: parent
+-        }
+-        Text {
+-            anchors.horizontalCenter: background2.horizontalCenter
+-            anchors.top: background2.bottom
+-            text: "Siap untuk memulai kemandirian berperangkat lunak?"
+-            wrapMode: Text.WordWrap
+-            width: 600
+-            horizontalAlignment: Text.Center
+-        }
+-    }
+-
+ }
