@@ -18,7 +18,7 @@ index 5c3490e..a171c79 100755
 -cat <<EOF > $CHROOT/etc/apt/sources.list.d/blankon.sources
 +cat <<EOF > "$CHROOT"/etc/apt/sources.list.d/blankon.sources
  Types: deb deb-src
- URIs: http://arsip-dev.blankonlinux.id/dev/
+ URIs: http://arsip.blankonlinux.id/verbeek/
  Suites: $RELEASE
 @@ -15,6 +15,16 @@ Signed-By: /usr/share/keyrings/blankon-archive-keyring.gpg
  

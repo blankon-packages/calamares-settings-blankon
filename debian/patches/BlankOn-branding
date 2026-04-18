@@ -290,7 +290,7 @@ index de19a50..8eff21a 100755
 -deb-src http://deb.debian.org/debian $RELEASE main non-free-firmware
 +cat <<EOF > $CHROOT/etc/apt/blankon.sources
 +Types: deb deb-src
-+URIs: http://arsip-dev.blankonlinux.id/dev/
++URIs: http://arsip.blankonlinux.id/verbeek/
 +Suites: $RELEASE
 +Components: main extras restricted restricted-firmware
 +Signed-By: /usr/share/keyrings/blankon-archive-keyring.gpg

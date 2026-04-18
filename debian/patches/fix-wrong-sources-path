@@ -22,5 +22,5 @@ index 8eff21a..242e019 100755
 -cat <<EOF > $CHROOT/etc/apt/blankon.sources
 +cat <<EOF > $CHROOT/etc/apt/sources.list.d/blankon.sources
  Types: deb deb-src
- URIs: http://arsip-dev.blankonlinux.id/dev/
+ URIs: http://arsip.blankonlinux.id/verbeek/
  Suites: $RELEASE
