@@ -1,3 +1,9 @@
+calamares-settings-blankon (14.0.2-1blankon10) verbeek; urgency=medium
+
+  * update blankon archive url from arsip-dev.blankonlinux.id to arsip.blankonlinux.id
+
+ -- Herpiko Dwi Aguno <herpiko@gmail.com>  Fri, 18 Apr 2026 00:00:00 +0000
+
 calamares-settings-blankon (14.0.2-1blankon9) verbeek; urgency=medium
 
   * add nvidia cuda repo for debian13 to get latest nvidia driver
