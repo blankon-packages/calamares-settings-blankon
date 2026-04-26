@@ -7,19 +7,22 @@ CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc
 # full-disk-encryption. The initramfs is re-generated later in the
 # installation process so we only set the permissions snippet without
 # regenerating the initramfs right now:
+# cryptsetup-initramfs, cryptsetup, and keyutils are pre-installed via live-build
+# package lists and are already available in the installed system. No need to
+# install them here.
 if [ "$(mount | grep $CHROOT" " | cut -c -16)" = "/dev/mapper/luks" ]; then
     echo "UMASK=0077" > $CHROOT/etc/initramfs-tools/conf.d/initramfs-permissions
-    chroot $CHROOT apt-get -y install cryptsetup-initramfs cryptsetup keyutils
+    # chroot $CHROOT apt-get -y install cryptsetup-initramfs cryptsetup keyutils || true
 fi
 
 echo "Running bootloader-config..."
 
 if [ -d /sys/firmware/efi/efivars ]; then
     echo " * Installing grub-efi (uefi)..."
-    DEBIAN_FRONTEND=noninteractive chroot $CHROOT apt-get -y install grub-efi
+    DEBIAN_FRONTEND=noninteractive chroot $CHROOT apt-get -y install grub-efi || true
 else
     echo " * install grub... (bios)"
-    DEBIAN_FRONTEND=noninteractive chroot $CHROOT apt-get -y install grub-pc
+    DEBIAN_FRONTEND=noninteractive chroot $CHROOT apt-get -y install grub-pc || true
 fi
 
 # Re-enable os-prober:
