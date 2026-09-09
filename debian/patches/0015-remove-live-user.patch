@@ -1,0 +1,65 @@
+From: Herpiko Dwi Aguno <herpiko@gmail.com>
+Date: Sat, 14 Feb 2026 00:00:00 +0000
+Subject: Remove live user (blankon) from installed system
+
+After installation, remove the blankon live user from the target system
+if another user has been created. If blankon is the only user, it is
+kept to avoid leaving the system without a login account.
+---
+ calamares-modules/remove-live-user/module.desc |  6 ++++++
+ calamares/settings.conf                        |  1 +
+ helpers/calamares-remove-live-user             | 20 ++++++++++++++++++++
+ 3 files changed, 27 insertions(+)
+ create mode 100644 calamares-modules/remove-live-user/module.desc
+ create mode 100755 helpers/calamares-remove-live-user
+
+diff --git a/calamares-modules/remove-live-user/module.desc b/calamares-modules/remove-live-user/module.desc
+new file mode 100644
+index 0000000..6de2080
+--- /dev/null
++++ b/calamares-modules/remove-live-user/module.desc
+@@ -0,0 +1,6 @@
++---
++type:       "job"
++name:       "remove-live-user"
++interface:  "process"
++command:    "/usr/share/calamares/helpers/calamares-remove-live-user"
++timeout:    600
+diff --git a/calamares/settings.conf b/calamares/settings.conf
+index c452c6f..3fc5934 100644
+--- a/calamares/settings.conf
++++ b/calamares/settings.conf
+@@ -85,6 +85,7 @@ sequence:
+   - dpkg-unsafe-io-undo
+   - sources-media-unmount
+   - sources-final
++  - remove-live-user
+   - umount
+
+ # Phase 3 - postinstall.
+diff --git a/helpers/calamares-remove-live-user b/helpers/calamares-remove-live-user
+new file mode 100755
+index 0000000..8b17694
+--- /dev/null
++++ b/helpers/calamares-remove-live-user
+@@ -0,0 +1,20 @@
++#!/bin/sh
++#
++# Removes the live user (blankon) from the installed system,
++# but only if there is another user present.
++#
++
++CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
++LIVE_USER="blankon"
++
++# Count normal users (UID >= 1000, excluding nobody)
++USER_COUNT=$(awk -F: '$3 >= 1000 && $1 != "nobody" { count++ } END { print count }' "$CHROOT/etc/passwd")
++
++if [ "$USER_COUNT" -ge 2 ]; then
++    # There are at least 2 normal users, check if blankon is one of them
++    if grep -q "^${LIVE_USER}:" "$CHROOT/etc/passwd"; then
++        chroot "$CHROOT" userdel -r "$LIVE_USER" 2>/dev/null
++    fi
++fi
++
++exit 0

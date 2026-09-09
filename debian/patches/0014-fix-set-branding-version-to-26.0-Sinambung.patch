@@ -1,0 +1,27 @@
+From: Herpiko Dwi Aguno <herpiko@gmail.com>
+Date: Wed, 9 Sep 2026 00:00:00 +0700
+Subject: fix: set branding version to 26.0 (Sinambung)
+
+---
+ calamares/branding/blankon/branding.desc | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/calamares/branding/blankon/branding.desc b/calamares/branding/blankon/branding.desc
+index 343a8af..a0f881b 100644
+--- a/calamares/branding/blankon/branding.desc
++++ b/calamares/branding/blankon/branding.desc
+@@ -9,10 +9,10 @@ windowPlacement: center
+ strings:
+     productName:         BlankOn GNU/Linux
+     shortProductName:    BlankOn
+-    version:             26
+-    shortVersion:        26
+-    versionedName:       BlankOn 26 (sinambung)
+-    shortVersionedName:  BlankOn 26
++    version:             26.0
++    shortVersion:        26.0
++    versionedName:       BlankOn 26.0 (Sinambung)
++    shortVersionedName:  BlankOn 26.0
+     bootloaderEntryName: BlankOn
+     productUrl:          https://blankon.github.io/
+     supportUrl:          https://blankon.github.io/

@@ -11,3 +11,5 @@ fix-blankon-packaging
 0011-fix-remove-legacy-cuda-debian13-x86_64.list.patch
 0012-fix-calamares-not-showing-slide-1-image.patch
 0013-feat-update-release-codename-from-verbeek-to-sinambun.patch
+0014-fix-set-branding-version-to-26.0-Sinambung.patch
+0015-remove-live-user.patch
