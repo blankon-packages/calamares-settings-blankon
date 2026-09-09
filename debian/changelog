@@ -1,3 +1,10 @@
+calamares-settings-blankon (14.0.2-1blankon13) sinambung; urgency=medium
+
+  * use the live medium as the only apt source during the install phase,
+    fixing offline installs failing at bootloader-config
+
+ -- Herpiko Dwi Aguno <herpiko@gmail.com>  Thu, 10 Sep 2026 00:00:00 +0700
+
 calamares-settings-blankon (14.0.2-1blankon12) sinambung; urgency=medium
 
   * re-add remove-live-user patch, lost when 1blankon8 was uploaded from a
