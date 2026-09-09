@@ -1,8 +1,13 @@
+calamares-settings-blankon (14.0.2-1blankon12) sinambung; urgency=medium
+
+  * re-add remove-live-user patch, lost when 1blankon8 was uploaded from a
+    divergent tree (only present in the archive, never in git)
+
+ -- Herpiko Dwi Aguno <herpiko@gmail.com>  Wed, 09 Sep 2026 00:00:00 +0700
+
 calamares-settings-blankon (14.0.2-1blankon11) sinambung; urgency=medium
 
   * set branding version to 26.0 (Sinambung)
-  * re-add remove-live-user patch, lost when 1blankon8 was uploaded from a
-    divergent tree (only present in the archive, never in git)
 
  -- Herpiko Dwi Aguno <herpiko@gmail.com>  Wed, 09 Sep 2026 00:00:00 +0700
 
