@@ -1,0 +1,44 @@
+From: Herpiko Dwi Aguno <herpiko@gmail.com>
+Date: Thu, 10 Sep 2026 00:00:00 +0700
+Subject: fix: tolerate uninstallable names in the package removal list
+
+live-task-localisation and live-task-recommended are inherited from the
+Debian upstream list. They are not installed on the BlankOn live image and
+are not carried in the medium repo, so with no network apt fails the whole
+apt-get remove invocation with "Unable to locate package", and the removals
+that matter -- including calamares itself -- never happen.
+
+Move those two into a try_remove operation, which removes packages one-by-one
+and only warns when one cannot be removed. Also drop the duplicate
+live-config-systemd entry.
+---
+ calamares/modules/packages.conf | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
+
+diff --git a/calamares/modules/packages.conf b/calamares/modules/packages.conf
+index 8bc0c81..9771bc2 100644
+--- a/calamares/modules/packages.conf
++++ b/calamares/modules/packages.conf
+@@ -1,15 +1,19 @@
+ backend: apt
+ 
+ operations:
++  # Not installed on the BlankOn live image, and not in the medium repo either,
++  # so apt cannot locate them during an offline install. A name apt does not
++  # know makes the whole apt-get invocation fail, taking the removals below
++  # with it -- try_remove drops them one-by-one and only warns on failure.
++  - try_remove:
++      - 'live-task-localisation'
++      - 'live-task-recommended'
+   - remove:
+       - 'live-boot'
+       - 'live-boot-doc'
+       - 'live-config'
+       - 'live-config-doc'
+       - 'live-config-systemd'
+-      - 'live-config-systemd'
+       - 'live-tools'
+-      - 'live-task-localisation'
+-      - 'live-task-recommended'
+       - 'calamares-settings-blankon'
+       - 'calamares'
