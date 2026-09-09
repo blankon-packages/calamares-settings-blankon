@@ -1,0 +1,49 @@
+From: Herpiko Dwi Aguno <herpiko@gmail.com>
+Date: Tue, 9 Sep 2026 00:00:00 +0700
+Subject: feat: update release codename from verbeek to sinambung
+
+---
+ calamares/branding/blankon/branding.desc | 2 +-
+ helpers/calamares-sources-final          | 2 +-
+ helpers/calamares-sources-media          | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/calamares/branding/blankon/branding.desc b/calamares/branding/blankon/branding.desc
+index 92a50e9..343a8af 100644
+--- a/calamares/branding/blankon/branding.desc
++++ b/calamares/branding/blankon/branding.desc
+@@ -11,7 +11,7 @@ strings:
+     shortProductName:    BlankOn
+     version:             26
+     shortVersion:        26
+-    versionedName:       BlankOn 26 (verbeek)
++    versionedName:       BlankOn 26 (sinambung)
+     shortVersionedName:  BlankOn 26
+     bootloaderEntryName: BlankOn
+     productUrl:          https://blankon.github.io/
+diff --git a/helpers/calamares-sources-final b/helpers/calamares-sources-final
+index c7a9c04..605ca2d 100755
+--- a/helpers/calamares-sources-final
++++ b/helpers/calamares-sources-final
+@@ -4,7 +4,7 @@
+ #
+ 
+ CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
+-RELEASE="verbeek"
++RELEASE="sinambung"
+ 
+ cat <<EOF > "$CHROOT"/etc/apt/sources.list.d/blankon.sources
+ Types: deb deb-src
+diff --git a/helpers/calamares-sources-media b/helpers/calamares-sources-media
+index a3d3833..f0291a5 100755
+--- a/helpers/calamares-sources-media
++++ b/helpers/calamares-sources-media
+@@ -2,7 +2,7 @@
+ 
+ CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
+ KNOWN_MEDIUM_PATHS="/run/live/medium /run/initramfs/live"
+-RELEASE="verbeek"
++RELEASE="sinambung"
+ 
+ # Support both dracut and initramfs configurations to avoid substitutions
+ # in live-build, see: #1089618

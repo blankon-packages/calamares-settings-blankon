@@ -1,3 +1,9 @@
+calamares-settings-blankon (14.0.2-1blankon10) sinambung; urgency=medium
+
+  * update release codename from verbeek to sinambung
+
+ -- Herpiko Dwi Aguno <herpiko@gmail.com>  Wed, 09 Sep 2026 00:00:00 +0700
+
 calamares-settings-blankon (14.0.2-1blankon9) verbeek; urgency=medium
 
   * add nvidia cuda repo for debian13 to get latest nvidia driver
