@@ -1,0 +1,44 @@
+From: Herpiko Dwi Aguno <herpiko@gmail.com>
+Date: Thu, 10 Sep 2026 00:00:00 +0700
+Subject: fix: take the installed system's archive from the ISO
+
+sources-final hardcoded the development archive path, so an installed system
+ended up with "arsip-dev.blankonlinux.id/dev sinambung" -- a suite that does
+not exist under that path.
+
+Rather than hardcode the corrected value, read it from
+/etc/blankon/archive.conf in the live session. live-build already has to
+decide which archive to build the ISO from, so let that decision carry
+through to the installed system instead of duplicating it in a package that
+then has to be rebuilt and uploaded in lockstep with every ISO respin.
+---
+ helpers/calamares-sources-final | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
+
+diff --git a/helpers/calamares-sources-final b/helpers/calamares-sources-final
+index a171c79..c4f8e21 100755
+--- a/helpers/calamares-sources-final
++++ b/helpers/calamares-sources-final
+@@ -6,9 +6,21 @@
+ CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
+ RELEASE="sinambung"
+ 
++# Which archive the installed system is pointed at is decided by the ISO, not
++# by this package: live-build ships its choice as /etc/blankon/archive.conf.
++# Read it from the live session we are running in -- note the deliberate lack
++# of $CHROOT, the target has no such file yet. The fallback is the production
++# archive, so a missing or unreadable file can only ever leave a development
++# ISO pointing at production, never the reverse.
++ARCHIVE_URI="http://arsip.blankonlinux.id/sinambung/"
++
++if [ -r /etc/blankon/archive.conf ]; then
++    . /etc/blankon/archive.conf
++fi
++
+ cat <<EOF > "$CHROOT"/etc/apt/sources.list.d/blankon.sources
+ Types: deb deb-src
+-URIs: http://arsip-dev.blankonlinux.id/dev/
++URIs: $ARCHIVE_URI
+ Suites: $RELEASE
+ Components: main extras restricted restricted-firmware
+ Signed-By: /usr/share/keyrings/blankon-archive-keyring.gpg
