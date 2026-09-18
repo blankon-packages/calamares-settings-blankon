@@ -1,0 +1,42 @@
+From: Herpiko Dwi Aguno <herpiko@gmail.com>
+Date: Fri, 18 Sep 2026 00:00:00 +0700
+Subject: fix: default the timezone pin to Asia/Jakarta
+
+The locale module was shipped without a configuration file, so Calamares used
+its own fallback for the starting location: America/New_York. Neither
+locale.conf nor welcome.conf enabled GeoIP, so nothing ever moved that pin.
+Unless the user noticed the map on the locale page and clicked Jakarta
+themselves, the installed system got New_York -- which is what "the installer
+said Jakarta but the clock is wrong" turns out to be: the language and keyboard
+came out Indonesian because those are picked from visible lists, the timezone
+did not because it is picked from a map that was already showing a plausible
+looking pin.
+
+GeoIP is left off deliberately: it needs a working Internet connection, which
+an offline install does not have, and where there is one it would undo this
+default for anyone installing from abroad.
+---
+ calamares/modules/locale.conf | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+ create mode 100644 calamares/modules/locale.conf
+
+diff --git a/calamares/modules/locale.conf b/calamares/modules/locale.conf
+new file mode 100644
+index 0000000..79f1d29
+--- /dev/null
++++ b/calamares/modules/locale.conf
+@@ -0,0 +1,14 @@
++---
++# Where the pin on the timezone map starts out. Calamares falls back to
++# America/New_York when these are unset, and neither this module nor
++# welcome.conf enables GeoIP, so without them an installer that is otherwise
++# entirely Indonesian hands the user a New York clock unless they notice the
++# map and move the pin themselves.
++region:                     "Asia"
++zone:                       "Jakarta"
++
++# GeoIP would need a working Internet connection, which an offline install by
++# definition does not have, and it is not wanted here anyway: it would silently
++# undo the default above for anyone installing from abroad.
++geoip:
++    style:                  "none"

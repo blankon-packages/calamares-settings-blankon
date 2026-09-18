@@ -16,3 +16,4 @@ fix-blankon-packaging
 0016-fix-use-live-medium-as-only-apt-source-during-install.patch
 0017-fix-tolerate-uninstallable-names-in-package-removal.patch
 0018-fix-take-the-installed-system-archive-from-the-ISO.patch
+0019-fix-default-the-timezone-pin-to-asia-jakarta.patch
