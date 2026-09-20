@@ -1,0 +1,40 @@
+From: Herpiko Dwi Aguno <herpiko@gmail.com>
+Date: Sun, 20 Sep 2026 00:00:00 +0700
+Subject: fix: hide the welcome page URL buttons
+
+The welcome page offered Support, Known issues and Release notes, but only one
+of the three had anything behind it. supportUrl and releaseNotesUrl in
+branding.desc were both https://blankon.github.io/, a redirect to the project
+landing page, so two buttons opened the same page and neither answered the
+question it advertised; knownIssuesUrl at least reached a real tracker.
+
+Calamares has switches for exactly these three, so no QML change is needed.
+They are turned off until there are pages worth linking. The URLs themselves
+stay in branding.desc -- Calamares ignores them while these are false, so
+turning a button back on later is a one line change here.
+---
+ calamares/modules/welcome.conf | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
+
+diff --git a/calamares/modules/welcome.conf b/calamares/modules/welcome.conf
+index ee36aaa..1d918a5 100644
+--- a/calamares/modules/welcome.conf
++++ b/calamares/modules/welcome.conf
+@@ -1,7 +1,14 @@
+ ---
+-showSupportUrl:         true
+-showKnownIssuesUrl:     true
+-showReleaseNotesUrl:    true
++# The three buttons these switch on (Support, Known issues, Release notes) all
++# led to placeholders: supportUrl and releaseNotesUrl in branding.desc both
++# pointed at https://blankon.github.io/, which is a redirect to the project
++# landing page, so two of the three buttons opened the same page and neither
++# one answered the question it advertised. Rather than ship buttons that
++# mislead, they stay hidden until there are pages behind them; the URLs are
++# left in branding.desc, where they are simply ignored while these are false.
++showSupportUrl:         false
++showKnownIssuesUrl:     false
++showReleaseNotesUrl:    false
+ 
+ requirements:
+     requiredStorage:    15

@@ -1,3 +1,11 @@
+calamares-settings-blankon (14.0.2-1blankon17) sinambung; urgency=medium
+
+  * hide the Support, Known issues and Release notes buttons on the welcome
+    page, which pointed at a redirect to the project landing page rather than
+    at pages answering the questions they advertised
+
+ -- Herpiko Dwi Aguno <herpiko@gmail.com>  Sun, 20 Sep 2026 00:00:00 +0700
+
 calamares-settings-blankon (14.0.2-1blankon16) sinambung; urgency=medium
 
   * default the timezone pin on the locale page to Asia/Jakarta, fixing
