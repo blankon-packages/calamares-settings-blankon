@@ -18,3 +18,4 @@ fix-blankon-packaging
 0018-fix-take-the-installed-system-archive-from-the-ISO.patch
 0019-fix-default-the-timezone-pin-to-asia-jakarta.patch
 0020-fix-hide-the-welcome-page-url-buttons.patch
+0021-feat-install-debian-signed-uefi-chain.patch

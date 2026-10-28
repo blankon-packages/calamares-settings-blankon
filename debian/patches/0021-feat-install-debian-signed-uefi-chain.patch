@@ -1,0 +1,181 @@
+From: Restu Muzakir <hi@restuhaqza.dev>
+Date: Wed, 28 Oct 2026 00:00:00 +0700
+Subject: feat: install Debian signed UEFI chain
+
+The installer currently pulls unsigned grub-efi and runs grub-install without
+a signed path. On a system installed with UEFI Secure Boot enabled the
+firmware refuses to run the resulting grubx64.efi, so the installed system
+does not boot even though the live medium did: the live ISO ships Debian's
+signed shim and GRUB.
+
+Use Calamares' sb-shim loader so the NVRAM entry points at shimx64.efi, and
+install Debian's signed chain in the target system: shim is signed by the
+Microsoft UEFI CA, GRUB and the kernel by Debian. BlankOn does not need its
+own UEFI keys and users do not need MOK enrollment.
+
+The helper now:
+  - installs efibootmgr, grub-efi-amd64-bin, grub-efi-amd64-signed, mokutil
+    and shim-signed in the target;
+  - creates /boot/grub before update-grub, because that directory is normally
+    created by grub-install, which runs later in Calamares' bootloader module;
+  - runs grub-install with --no-nvram to lay down the module tree, then
+    replaces the unsigned binaries with the signed shim and GRUB;
+  - writes EFI/debian/grub.cfg, because Debian's signed GRUB has /EFI/debian
+    compiled in as its prefix regardless of --bootloader-id;
+  - creates the BlankOn firmware entry from the live environment, since
+    efibootmgr inside the target chroot cannot see efivars, and puts it first
+    in BootOrder.
+
+installEFIFallback is turned off: the helper already installs shim as
+EFI/BOOT/BOOTX64.EFI, and Calamares' fallback would overwrite it with the
+Debian-signed GRUB binary, which firmware rejects.
+
+ calamares/modules/bootloader.conf   |   17 +++++--
+ helpers/calamares-bootloader-config |   86 ++++++++++++++++++++++++++++++++++-
+ 2 files changed, 97 insertions(+), 6 deletions(-)
+
+diff --git a/calamares/modules/bootloader.conf b/calamares/modules/bootloader.conf
+index e2e6dc8..ef10688 100644
+--- a/calamares/modules/bootloader.conf
++++ b/calamares/modules/bootloader.conf
+@@ -2,9 +2,14 @@
+ # the system to start (and pick one of the installed operating
+ # systems to run).
+ ---
+-# Define which bootloader you want to use for EFI installations
++# Define which bootloader you want to use for EFI installations.
+ # Possible options are 'grub', 'sb-shim' and 'systemd-boot'.
+-efiBootLoader: "grub"
++#
++# 'sb-shim' makes the bootloader module create the NVRAM entry for
++# EFI/<id>/shimx64.efi instead of EFI/<id>/grubx64.efi. That is required on
++# Secure Boot systems: firmware trusts the Microsoft-signed shim, not Debian's
++# GRUB signature. calamares-bootloader-config installs the shim/GRUB files.
++efiBootLoader: "sb-shim"
+ 
+ # systemd-boot configuration files settings, set kernel and initramfs file names
+ # and amount of time before default selection boots
+@@ -26,6 +31,7 @@ timeout: "10"
+ # GRUB functionality (notably grub-probe) to work. As needed, you may use
+ # complete paths like `/usr/bin/efibootmgr` for the executables.
+ #
++# grub-install is used for BIOS installs (and by the helper for EFI).
+ grubInstall: "grub-install"
+ grubMkconfig: "grub-mkconfig"
+ grubCfg: "/boot/grub/grub.cfg"
+@@ -43,7 +49,7 @@ efiBootMgr: "efibootmgr"
+ # setting the option here, keep in mind that the name is sanitized
+ # (problematic characters, see above, are replaced).
+ #
+-# efiBootloaderId: "dirname"
++efiBootloaderId: "blankon"
+ 
+ # Optionally install a copy of the GRUB EFI bootloader as the EFI
+ # fallback loader (either bootia32.efi or bootx64.efi depending on
+@@ -51,4 +57,7 @@ efiBootMgr: "efibootmgr"
+ # seems to be the only one). If you set this to false, take care
+ # to add another module to optionally install the fallback on those
+ # boards that need it.
+-installEFIFallback: true 
++# Keep this false: calamares-bootloader-config installs shim as
++# EFI/BOOT/BOOTX64.EFI. Calamares' fallback would overwrite that with the
++# signed-by-Debian GRUB binary, which firmware rejects.
++installEFIFallback: false
+diff --git a/helpers/calamares-bootloader-config b/helpers/calamares-bootloader-config
+index 5c0ec9f..aec6634 100755
+--- a/helpers/calamares-bootloader-config
++++ b/helpers/calamares-bootloader-config
+@@ -14,9 +14,91 @@ fi
+ 
+ echo "Running bootloader-config..."
+ 
++# /boot/grub is created by grub-install, which only runs later in Calamares'
++# bootloader module. The update-grub call at the end of this script needs the
++# directory to exist, otherwise it fails with "Directory nonexistent".
++mkdir -p "$CHROOT/boot/grub"
++
+ if [ -d /sys/firmware/efi/efivars ]; then
+-    echo " * Installing grub-efi (uefi)..."
+-    DEBIAN_FRONTEND=noninteractive chroot $CHROOT apt-get -y install grub-efi
++    echo " * Installing shim + Debian-signed GRUB (UEFI Secure Boot)..."
++
++    # shim-signed is signed by the Microsoft UEFI CA; grub-efi-amd64-signed
++    # is signed by Debian's UEFI CA. BlankOn ships Debian's signed kernel, so
++    # using Debian's chain keeps the whole trust chain valid without BlankOn
++    # having to manage its own UEFI keys.
++    DEBIAN_FRONTEND=noninteractive chroot $CHROOT apt-get -y install \
++        efibootmgr \
++        grub-efi-amd64-bin \
++        grub-efi-amd64-signed \
++        mokutil \
++        shim-signed
++
++    EFI_ID=blankon
++    EFI_DIR=$CHROOT/boot/efi
++    SIGNED_GRUB=$CHROOT/usr/lib/grub/x86_64-efi-signed/grubx64.efi.signed
++    SHIM=$CHROOT/usr/lib/shim/shimx64.efi.signed
++
++    # Lay down the module tree and the fallback loader. grub-install in this
++    # archive has no --signed option, so the signed binaries are copied in
++    # below. --no-nvram keeps grub-install from creating a boot entry that
++    # points straight at grubx64.efi (firmware rejects Debian's signature;
++    # only shim is trusted by the firmware).
++    chroot $CHROOT /usr/sbin/grub-install \
++        --target=x86_64-efi \
++        --efi-directory=/boot/efi \
++        --bootloader-id=$EFI_ID \
++        --recheck --no-floppy --force-extra-removable --no-nvram
++
++    # Replace the unsigned binaries with the signed chain: firmware trusts
++    # shim (Microsoft CA), shim trusts Debian's GRUB, GRUB boots the
++    # Debian-signed kernel. No MOK enrollment is needed.
++    install -m 0644 "$SIGNED_GRUB" "$EFI_DIR/EFI/$EFI_ID/grubx64.efi"
++    install -m 0644 "$SHIM" "$EFI_DIR/EFI/$EFI_ID/shimx64.efi"
++    install -m 0644 "$SHIM" "$EFI_DIR/EFI/BOOT/BOOTX64.EFI"
++    install -m 0644 "$SIGNED_GRUB" "$EFI_DIR/EFI/BOOT/grubx64.efi"
++    if [ -f "$CHROOT/usr/lib/shim/mmx64.efi.signed" ]; then
++        install -m 0644 "$CHROOT/usr/lib/shim/mmx64.efi.signed" \
++            "$EFI_DIR/EFI/$EFI_ID/mmx64.efi"
++        install -m 0644 "$CHROOT/usr/lib/shim/mmx64.efi.signed" \
++            "$EFI_DIR/EFI/BOOT/mmx64.efi"
++    fi
++
++    # Debian's signed GRUB has /EFI/debian compiled in as its prefix, so it
++    # looks for the config there no matter which --bootloader-id was used.
++    # Point that config at the real menu in /boot/grub/grub.cfg.
++    uuid=$(chroot $CHROOT /usr/sbin/grub-probe -t fs_uuid /)
++    mkdir -p "$EFI_DIR/EFI/debian"
++    printf 'search.fs_uuid %s root\nset prefix=($root)/boot/grub\nconfigfile $prefix/grub.cfg\n' \
++        "$uuid" > "$EFI_DIR/EFI/debian/grub.cfg"
++
++    # Create the firmware entry from the live environment. efibootmgr inside
++    # the target chroot cannot see efivars, so Calamares' own sb-shim entry is
++    # never written. Use lsblk/sysfs to find the disk and partition backing
++    # the ESP, then point the entry at shim (firmware trusts Microsoft's CA,
++    # not Debian's).
++    esp_dev=$(findmnt -n -o SOURCE --target "$CHROOT/boot/efi" 2>/dev/null || true)
++    if [ -n "$esp_dev" ] && command -v efibootmgr >/dev/null 2>&1; then
++        esp_part=$(basename "$esp_dev")
++        esp_disk=$(lsblk -no PKNAME "$esp_dev" 2>/dev/null | head -1)
++        esp_num=$(cat "/sys/class/block/$esp_part/partition" 2>/dev/null || true)
++        if [ -n "$esp_disk" ] && [ -n "$esp_num" ]; then
++            for n in $(efibootmgr | sed -n 's/^Boot\([0-9A-F]\{4\}\)\* BlankOn.*/\1/p'); do
++                efibootmgr -b "$n" -B >/dev/null
++            done
++            efibootmgr -c -d "/dev/$esp_disk" -p "$esp_num" -L BlankOn \
++                -l '\EFI\blankon\shimx64.efi' >/dev/null
++            new=$(efibootmgr | sed -n 's/^Boot\([0-9A-F]\{4\}\)\* BlankOn.*/\1/p' | tail -1)
++            if [ -n "$new" ]; then
++                order=$(efibootmgr | sed -n 's/^BootOrder: //p' | tr ',' '\n' \
++                    | grep -v "^$new$" | paste -sd, -)
++                if [ -n "$order" ]; then
++                    efibootmgr -o "$new,$order" >/dev/null || true
++                else
++                    efibootmgr -o "$new" >/dev/null || true
++                fi
++            fi
++        fi
++    fi
+ else
+     echo " * install grub... (bios)"
+     DEBIAN_FRONTEND=noninteractive chroot $CHROOT apt-get -y install grub-pc
