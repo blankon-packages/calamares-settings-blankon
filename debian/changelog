@@ -1,3 +1,12 @@
+calamares-settings-blankon (14.0.2-1blankon18) sinambung; urgency=medium
+
+  * install Debian's signed UEFI chain (shim, GRUB and signed kernel) and
+    create the firmware entry from the live environment, so a system installed
+    with Secure Boot enabled boots without disabling Secure Boot or enrolling
+    a MOK key
+
+ -- Restu Muzakir <hi@restuhaqza.dev>  Wed, 28 Oct 2026 00:00:00 +0700
+
 calamares-settings-blankon (14.0.2-1blankon17) sinambung; urgency=medium
 
   * hide the Support, Known issues and Release notes buttons on the welcome
